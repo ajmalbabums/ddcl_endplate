@@ -224,16 +224,27 @@ The column, beam and end plate are supposed to have the same strengths following
 \chapter{Factored loads}
 %
 Factored values of the moment (in kNm) and vertical shear force  (in kN) acting on connection is mandatorily taken from the user. An optional field for axial force (in kN) is also given in the input dock if it is acting.\\
+Assuming the beam is laterally supported and factored shear force does not exceed 0.6 times the its design shear strength, 
 The minimum moment capacity of connection,
 \begin{equation}\label{eq:cl_10.7b, IS 800}
-	M_{min} = 0.5 M_d
+	M_{min} = 0.5 M_d 
 \end{equation}
 Where, \\
 \indent $M_{min}$ = Minimum moment capacity of connection \\
 \indent $M_d$ = Design bending strength of beam, given by
 \begin{equation} \label{eq:cl_8.2.1.2a, IS 800}
-M_d = \beta_b Z_p f_y / \gamma_{m0}
+M_d = \beta_b Z_p f_y / \gamma_{m0} \le 1.5 Z_e f_y / \gamma_{m0} 
 \end{equation}
+Where, \\
+\indent $\beta_b$ = 1.0 for plastic and compact sections;\\
+\indent $\beta_b$ = $Z_e/Z_p$ for semi-compact sections;\\
+\indent $Z_p, Z_e$ = Plastic and elastic section modulii of the cross-section, respectively; \\
+\indent $f_y$ = Yield stress of the material; and;\\
+\indent $\gamma_{m0}$ = Partial safety factor \\
+\indent $M_{min}$ = Minimum moment capacity of connection
+
+
+
 \checkrefernces
 \begin{enumerate}
 	\item cl. 10.7, IS 800:2007 \eqref{eq:cl_10.7b, IS 800} 
@@ -245,16 +256,15 @@ M_d = \beta_b Z_p f_y / \gamma_{m0}
 %------------------------------------------------------
 \chapter{Bolt}
 %
- Diameter (mm)
- Type
- Grade
+The diameter (in mm), type of bolt action (bearing or friction grip) and grade of bolts are taken from user as inputs.
 
 %------------------------------------------------------
 %------------------------------------------------------
 %------------------------------------------------------
 %					Number of bolts
 %------------------------------------------------------
-\chapter{Number of bolts}
+
+\section{Number of bolts}
 
 \large Number of bolts in the configuration \\
 	
