@@ -115,43 +115,29 @@
 
 %------------------------------------------------------
 \chapter*{User Inputs}
-
-
+%
 \begin{itemize}
-	
 	\item Connecting members
-	\begin{itemize}
-		\item Connectivity*
-		\item Beam Section*
-		\item Column Section*
-		\item fu (MPa)* 
-		\item fy (MPa)* 
-		
-	\end{itemize}
-
+		\subitem Connectivity*
+		\subitem Beam Section*
+		\subitem Column Section*
+		\subitem $f_u$ (MPa)* 
+		\subitem $f_y$ (MPa)* 
 	\item Factored loads
-		\begin{itemize}
-		\item Moment (kNm)*
-		\item Vert. Shear (kN)*
-		\item Axial Force (kN)
-		\end{itemize}
+		\subitem Moment (kNm)*
+		\subitem Vert. Shear (kN)*
+		\subitem Axial Force (kN)
 	\item Bolt
-		\begin{itemize}
-		\item Diameter (mm)*
-		\item Type *
-		\item Grade *
-		\end{itemize}
+		\subitem Diameter (mm)*
+		\subitem Type *
+		\subitem Grade *
 	\item Plate
-		\begin{itemize}
-		\item Thickness (mm)*
-		\item Height (mm)
-		\item Width (mm)
-		\end{itemize}
+		\subitem Thickness (mm)*
+		\subitem Height (mm)
+		\subitem Width (mm)
 	\item Weld size
-		\begin{itemize}
-		\item Flange weld (mm)*
-		\item Web weld (mm)*
-		\end{itemize}
+		\subitem Flange weld (mm)*
+		\subitem Web weld (mm)*
 \end{itemize}
 %=====================================================
 \part*{Design and Detailing Checks}
@@ -262,6 +248,7 @@ The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming t
 %------------------------------------------------------
 \subsection{Bearing type bolts}
 %------------------------------------------------------
+\subsubsection{Shear capacity}
 Currently, conservatively assuming all the shear planes passes through the threads of bolt. Shear capacity of bearing bolts,
 \begin{equation}
 	V_{dsb} = \frac{f_u n_n A_{nb}}{\sqrt{3} \gamma_{mb}} \beta_{lj} \beta_{lg} 
@@ -273,10 +260,28 @@ Where, \\
 \indent $A_{nb}$ = net shear area of the bolt at threads, may be taken as the area corresponding to root diameter at the thread;\\
 \indent $\gamma_{mb}$ = partial safety factor for bolt\\
 %------------------------------------------------------
+\subsubsection{Bearing capacity}
+\begin{equation}
+V_{dpb} = 2.5 k_b d t f_u / \gamma_{mb}
+\end{equation}
+%------------------------------------------------------
+\subsubsection{Tension capacity}
+\begin{equation}
+T_{db} = 0.90 f_{ub} A_n / \gamma_{mb} < f_{yb} A_{sb} / \gamma_{m0}
+\end{equation}
+%------------------------------------------------------
 \subsection{Friction grip type bolts}
 %------------------------------------------------------
+\subsubsection{Slip resistance}
+\begin{equation}
+V_{nsf} = 0.7 \mu_f n_e  K_h A_{nb} f_{ub} / \gamma_{mf}
+\end{equation}
+%------------------------------------------------------
+\subsubsection{Tension capacity}
+\begin{equation}
+T_{df} = 0.90 f_{ub} A_n / \gamma_{mf} < f_{yb} A_{sb}  \frac{\gamma_{m1}}{\gamma_{m0} \gamma_{mf}}
+\end{equation}
 %======================================================
-\section{Bearing Capacity}
 %------------------------------------------------------
 %======================================================
 \section{Number of bolts}
@@ -285,7 +290,7 @@ Where, \\
 	
 	\textbf{Assummption:} \\
 	
-	The minimum number of bolts required for the flush plate configuration is 4 and that for the extended one way configuration is 6. 
+%	The minimum number of bolts required for the flush plate configuration is 4 and that for the extended one way configuration is 6. 
 	Also, the flush end plate will be restricted to a maximum 6 number of bolts whereas the extended one way end plate will be restricted to 8 number of bolts.
 	
 	\vspace{5mm}
