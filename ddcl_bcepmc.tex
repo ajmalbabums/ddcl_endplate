@@ -256,16 +256,31 @@ Where, \\
 %------------------------------------------------------
 \chapter{Bolt}
 %
-The diameter (in mm), type of bolt action (bearing or friction grip) and grade of bolts are taken from user as inputs.
-
+The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming to IS 1363 (part 1) 2002], type of bolt action (bearing or friction grip) and grade of bolts are taken from the user as inputs. The nominal tensile strength of bolt [IS 1367 (part 3): 2002] is considered as the ultimate tensile strength by default, and the user is allowed to overwrite it in 'Design Preference'. The bolt hole type is taken as 'Standard' by default and user is allowed to change it to 'Over-sized' in 'Design Preferences,' and the bolt hole diameter is calculated accordingly, conforming to cl. 10.2.1 of IS 800:2007. The coefficient of friction (for friction grip bolts) is taken as 0.3 by default and user is allowed to change it from a dropdown list with values given in table 20 of IS 800:2007. 
+%======================================================
+\section{Bolt Value}
 %------------------------------------------------------
+\subsection{Bearing type bolts}
 %------------------------------------------------------
+Currently, conservatively assuming all the shear planes passes through the threads of bolt. Shear capacity of bearing bolts,
+\begin{equation}
+	V_{dsb} = \frac{f_u n_n A_{nb}}{\sqrt{3} \gamma_{mb}} \beta_{lj} \beta_{lg} 
+\end{equation}
+Where, \\
+\indent $V_{dsb}$ = design strength of bolt, as governed by shear strength;\\
+\indent $f_u$ = ultimate tensile strength of a bolt;\\
+\indent $n_n$ =  number of shear planes with threads intercepting the shear plane; \\
+\indent $A_{nb}$ = net shear area of the bolt at threads, may be taken as the area corresponding to root diameter at the thread;\\
+\indent $\gamma_{mb}$ = partial safety factor for bolt\\
 %------------------------------------------------------
-%					Number of bolts
+\subsection{Friction grip type bolts}
 %------------------------------------------------------
-
+%======================================================
+\section{Bearing Capacity}
+%------------------------------------------------------
+%======================================================
 \section{Number of bolts}
-
+%------------------------------------------------------
 \large Number of bolts in the configuration \\
 	
 	\textbf{Assummption:} \\
