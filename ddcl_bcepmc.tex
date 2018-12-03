@@ -152,6 +152,7 @@ The column and beam are allowed to connect by following connectivites.
 \end{itemize}
 %
 The column and beam sections are provided as a dropdown list in Osdag input dock. Tapered sections from IS 808:1989 and parallel flange sections from the upcoming version of IS 808 are included. Old sections are highlighted in red colour in the dropdown with a warning that "user is using an old section which is not available in latest version of IS 808" in the message log.
+%------------------------------------------------------
 %\section{Connectivity}
 %------------------------------------------------------
 %
@@ -190,15 +191,14 @@ Where, \\
 \chapter{Material Strength}
 %
 The column, beam and end plate are supposed to have the same strengths following the Indian Standards. The grades available in IS 800:2007 and IS 2062:2010 are included with a warning that "user is using a section of grade which is not available in the latest version of IS 2062". The values of material strength will be subjected to the following limits in \textbf{MPa};
-	\section{Yield Stress limits}
+\section{Yield Stress limits}
 	\begin{equation}
-	250 \leq f_{y} \leq 650
+		250 \leq f_{y} \leq 650
 	\end{equation}
-	\section{Ultimate Stress limits}
+\section{Ultimate Stress limits}
 	\begin{equation}
-	410 \leq f_{u} \leq 780
+		410 \leq f_{u} \leq 780
 	\end{equation}
-	
 	\checkrefernces
 		\begin{enumerate}
 			\item Table-1, IS 800 : 2007
@@ -213,24 +213,22 @@ The column, beam and end plate are supposed to have the same strengths following
 Factored values of the moment (in kNm) and vertical shear force  (in kN) acting on connection is mandatorily taken from the user. An optional field for axial force (in kN) is also given in the input dock if it is acting.\\
 Assuming the beam is laterally supported and factored shear force does not exceed 0.6 times its design shear strength, 
 The minimum moment capacity of connection,
-\begin{equation}\label{eq:cl_10.7b, IS 800}
-	M_{min} = 0.5 M_d 
-\end{equation}
-Where, \\
-\indent $M_{min}$ = Minimum moment capacity of the connection \\
-\indent $M_d$ = Design bending strength of the beam, given by
-\begin{equation} \label{eq:cl_8.2.1.2a, IS 800}
-M_d = \beta_b Z_p f_y / \gamma_{m0} \le 1.5 Z_e f_y / \gamma_{m0} 
-\end{equation}
-Where, \\
-\indent $\beta_b$ = 1.0 for plastic and compact sections;\\
-\indent $\beta_b$ = $Z_e/Z_p$ for semi-compact sections;\\
-\indent $Z_p, Z_e$ = Plastic and elastic section modulii of the cross-section, respectively; \\
-\indent $f_y$ = Yield stress of the material; and;\\
-\indent $\gamma_{m0}$ = Partial safety factor \\
-\indent $M_{min}$ = Minimum moment capacity of the connection
-
-
+	\begin{equation}\label{eq:cl_10.7b, IS 800}
+		M_{min} = 0.5 M_d 
+	\end{equation}
+	Where, \\
+		\indent $M_{min}$ = Minimum moment capacity of the connection \\
+		\indent $M_d$ = Design bending strength of the beam, given by
+	\begin{equation} \label{eq:cl_8.2.1.2a, IS 800}
+		M_d = \beta_b Z_p f_y / \gamma_{m0} \le 1.5 Z_e f_y / \gamma_{m0} 
+	\end{equation}
+	Where, \\
+		\indent $\beta_b$ = 1.0 for plastic and compact sections;\\
+		\indent $\beta_b$ = $Z_e/Z_p$ for semi-compact sections;\\
+		\indent $Z_p, Z_e$ = Plastic and elastic section modulii of the cross-section, respectively; \\
+		\indent $f_y$ = Yield stress of the material; and;\\
+		\indent $\gamma_{m0}$ = Partial safety factor \\
+		\indent $M_{min}$ = Minimum moment capacity of the connection
 
 \checkrefernces
 \begin{enumerate}
