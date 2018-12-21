@@ -282,10 +282,10 @@ T_{df} = 0.90 f_{ub} A_n / \gamma_{mf} < f_{yb} A_{sb}  \frac{\gamma_{m1}}{\gamm
 \end{equation}
 %======================================================
 %------------------------------------------------------
+\begin{comment}
 %======================================================
 \section{Number of bolts}
 %------------------------------------------------------
-\begin{comment}
 Linear stress distribution is assumed.
  Number of bolts in the configuration \\
 
@@ -336,32 +336,35 @@ maximum plate width \ge 2(minumum end distace + minimum pitch + 50 mm) + beam we
 
 \section{Layout of Bolts}
 
-
+**add images
 %------------------------------------------------------
 %					Detailing
 %------------------------------------------------------		
 \chapter{Detailing}
-		
-		{\centering
-		\includegraphics[width=5in]{svg_drawingFPEOW.png} \\}
-		
-			\begin{enumerate}
+	{\centering
+	\includegraphics[width=5in]{svg_drawingFPEOW.png} \\}
+
+\section{Pitch and guage distances}
+	Pitch (p) is the distance between centres of two adjacent fasteners in a line lying in the direction of stress.
+	Guage (g) is the distance between centres of two adjacent fasteners transverse to the direction of stress.
+
+\subsection{Minimum pitch and guage distances}
+	\indent [Reference: Cl. 10.2.2, IS 800 : 2007]\\
+		\begin{equation}
+			 \textbf{\,pitch/gauge} \ge 2.5 * bolt\, diameter
+		\end{equation}
 				
-				\item \large  {Pitch (p)/ Gauge (g) distance (\textbf{already reviewed}) [Reference: Clause 10.2.2 and 10.2.3, IS 800 : 2007]} \\
-				%\vspace{5mm}
-				\begin{equation}
-				\boxed{ 2.5 * bolt\, diameter\, \leq \textbf{\,pitch/gauge \,} \leq min(32 * t,\, 300\, mm) }
-				\end{equation}
+\subsection{Maximum pitch and guage distances}
+\indent [Reference: Cl. 10.2.3, IS 800 : 2007]\\				
+		\begin{equation}
+			\textbf{\,pitch/gauge \,} \leq min(32 * t,\, 300\, mm)
+		\end{equation}
+		where, \\
+			\qquad t = thickness of thicker plate being connected 
+
+\section{End and egde distance}
 				
-				\hspace{10mm}
-				where,
-				
-				\hspace{30mm}
-				t = thickness of thicker plate being connected 
-				
-			\vspace{2mm}
-				
-				\item \large {End (e)/ Edge (e') distance (\textbf{already reviewed}) [Reference: Clause 10.2.4, IS 800 : 2007]} \\
+		\large {End (e)/ Edge (e') distance (\textbf{already reviewed}) [Reference: Clause 10.2.4, IS 800 : 2007]} \\
 				%\vspace{5mm}
 				\begin{equation}
 				\boxed{ 1.7 * bolt\,hole\, diameter\, \leq \textbf{\,end/edge \,} \leq 12*t*\varepsilon }
@@ -381,26 +384,23 @@ maximum plate width \ge 2(minumum end distace + minimum pitch + 50 mm) + beam we
 			
 			\vspace{2mm}
 				
-				\item \large {Cross-centre gauge distance (g')} (\textbf{refer fig. 1.1 and 1.2}) \\
-					\begin{enumerate}
-						\item Flush end plate. [Reference: AISC Design Guide - 16, table 3-6, page 22]
-						\begin{equation}
-						\boxed{ 57 mm \leq \textbf{g'} \leq 95 mm }
-						\end{equation}
-						
-						\item Extended one way. [Reference: AISC Design Guide - 16, table 4-7, page 39]
-						\begin{equation}
-						\boxed{ 69 mm \leq \textbf{g'} \leq 177 mm }
-						\end{equation}
-					\end{enumerate}
-					
-				
-			\vspace{5mm}
-\okornot
-				
-			\vspace{2mm}
-			
-				\item \large {Distance between centre of bolt and edge of the beam flange ($p_{f}$)} (\textbf{refer fig. 1.1 and 1.2})\\
+\section{Cross-centre gauge distance (g')} 
+(\textbf{refer fig. 1.1 and 1.2}) \\
+
+	\begin{enumerate}
+		\item Flush end plate. [Reference: AISC Design Guide - 16, table 3-6, page 22]
+		\begin{equation}
+		\boxed{ 57 mm \leq \textbf{g'} \leq 95 mm }
+		\end{equation}
+		
+		\item Extended one way. [Reference: AISC Design Guide - 16, table 4-7, page 39]
+		\begin{equation}
+		\boxed{ 69 mm \leq \textbf{g'} \leq 177 mm }
+		\end{equation}
+	\end{enumerate}
+\section{Distance between centre of bolt and edge of the beam flange ($p_{f}$)}
+
+ (\textbf{refer fig. 1.1 and 1.2})\\
 				
 					\begin{enumerate}
 						\item Flush end plate. [Reference: AISC Design Guide - 16, table 3-6, page 22]
@@ -415,69 +415,43 @@ maximum plate width \ge 2(minumum end distace + minimum pitch + 50 mm) + beam we
 					\end{enumerate}
 	    
 
-\okornot
-	    	
-	    	\end{enumerate}
-
 %------------------------------------------------------
 %					Plate Dimensions
 %------------------------------------------------------	
 \chapter{Plate Dimensions} 
-				\begin{enumerate}
-			\item \large Plate height $(h_{p})$
-			
-				\begin{enumerate}
+\section{Plate height $(h_{p})$}
 				
-					\vspace{2mm}
-					\item \large {$h_{p}$ for flush end plate}
+ \large {$h_{p}$ for flush end plate}
 					\begin{equation}
 					\boxed{h_{p} = beam\, depth + (2 * size\, of\, weld\, at\, flange) + (2 * some\, assumed\, cover)}
 					\end{equation}
-					
-					\vspace{5mm}
-\okornot
-					
-					\item \large {$h_{p}$ for extended one-way end plate}
+		
+\large {$h_{p}$ for extended one-way end plate}
 					\begin{equation}
 					\boxed{h_{p} = beam\, depth + end\, distance + p_{f} + size\, of\, weld\, at\, \,flange + some\, assumed\, cover}
 					\end{equation}
 					
-					\vspace{5mm}
-					\okornot
-					
-				\end{enumerate}
 			
-			\item \large Plate width $(w_{p})$
+\section{\large Plate width $(w_{p})$}
 			
 				\begin{equation}
 					\boxed{w_{p} = width \,of \,beam \,flange}
 				\end{equation}
-				
-				\vspace{5mm}
-\okornot
-			
-			\item \large Thickness of the plate $(t_{p})$
-			
-				\begin{enumerate}
-					
-					\vspace{2mm}
-					\item Plate thickness for flush end plate
-				\end{enumerate}
-			
-		
-			
-		\end{enumerate}
 
-	
+\section{Thickness of the plate $(t_{p})$}
 
-			
-		
-
+Plate thickness for flush end plate
 	
 	
 
-
-
+%------------------------------------------------------
+%					Weld
+%------------------------------------------------------	
+\chapter{Weld} 
+\section{Weld size}
+\subsection{Flange weld}
+\subsection{Web weld}
+\section{Weld length}
 %------------------------------------------------------
 %------------------------------------------------------
 \end{Form}
