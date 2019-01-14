@@ -2,6 +2,12 @@
 % Beam to Column End Plate Moment Connection 
 % Author: Ajmal Babu M S
 \documentclass[11.5pt,a4paper,oneside]{report}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{palatino}
@@ -179,11 +185,7 @@ Where, \\
 \indent $r_{c1}$ = Root radius of column \\
 \indent $gap$ = Clearance between beam and column flanges, 5mm
 
-\checkrefernces
-\begin{enumerate}
-	\item IS 808:1989
-	\item INSDAG Database for parallel flange sections
-\end{enumerate}
+
 \okornot
 %------------------------------------------------------
 %					Material strength
@@ -192,18 +194,16 @@ Where, \\
 %
 The column, beam and end plate are supposed to have the same strengths following the Indian Standards. The grades available in IS 800:2007 and IS 2062:2010 are included with a warning that "user is using a section of grade which is not available in the latest version of IS 2062". The values of material strength will be subjected to the following limits in \textbf{MPa};
 \section{Yield Stress limits}
+\qquad \qquad[Reference: Table-1, IS 800 : 2007; Table-2, IS 2062 : 2011]
 	\begin{equation}
 		250 \leq f_{y} \leq 650
 	\end{equation}
 \section{Ultimate Stress limits}
+\qquad \qquad[Reference: Table-1, IS 800 : 2007; Table-2, IS 2062 : 2011]
 	\begin{equation}
 		410 \leq f_{u} \leq 780
 	\end{equation}
-	\checkrefernces
-		\begin{enumerate}
-			\item Table-1, IS 800 : 2007
-			\item Table-2, IS 2062 : 2011
-		\end{enumerate}
+
 	\okornot
 %------------------------------------------------------
 %					Factored Loads
@@ -213,6 +213,9 @@ The column, beam and end plate are supposed to have the same strengths following
 Factored values of the moment (in kNm) and vertical shear force  (in kN) acting on connection is mandatorily taken from the user. An optional field for axial force (in kN) is also given in the input dock if it is acting.\\
 Assuming the beam is laterally supported and factored shear force does not exceed 0.6 times its design shear strength, 
 The minimum moment capacity of connection,
+
+\section{Minimum Factored Moment} 
+\qquad \qquad[Reference: Cl. 10.7, b-1, IS 800 : 2007] \\ \\
 	\begin{equation}\label{eq:cl_10.7b, IS 800}
 		M_{min} = 0.5 M_d 
 	\end{equation}
@@ -230,11 +233,6 @@ The minimum moment capacity of connection,
 		\indent $\gamma_{m0}$ = Partial safety factor \\
 		\indent $M_{min}$ = Minimum moment capacity of the connection
 
-\checkrefernces
-\begin{enumerate}
-	\item cl. 10.7, IS 800:2007 \eqref{eq:cl_10.7b, IS 800} 
-	\item cl. 8.2.1.2, IS 800:2007 \eqref{eq:cl_8.2.1.2a, IS 800} 
-\end{enumerate}
 \okornot
 %------------------------------------------------------
 %					Bolt
@@ -246,95 +244,129 @@ The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming t
 \section{Bolt Value}
 %------------------------------------------------------
 \subsection{Bearing type bolts}
+
+\subsubsection{Design strength of bolt (\boldmath $V_{db}$)}
+\qquad [Reference: Cl. 10.3.2, IS 800:2007] \\ \\ 
+
+\noindent The design strength of bolt is taken as the smaller of the value as governed by shear, $V_{dsb}$ (\ref{shear_capacity}) and bearing $V_{dpb}$ (\ref{bearing_capacity}).
+
+\begin{equation}
+	V_{db} = min~ (V_{dsb}, V_{dpb})
+\end{equation}
+
 %------------------------------------------------------
-\subsubsection{Shear capacity}
+\paragraph{Shear capacity (\boldmath $V_{dsb}$)}
+\label{shear_capacity}
+\qquad \qquad [Reference: Cl. 10.3.3, IS 800:2007] \\ \\
 Currently, conservatively assuming all the shear planes passes through the threads of the bolt. Shear capacity of bearing bolts,
 \begin{equation}
 	V_{dsb} = \frac{f_u n_n A_{nb}}{\sqrt{3} \gamma_{mb}} \beta_{lj} \beta_{lg} 
 \end{equation}
 Where, \\
-\indent $V_{dsb}$ = design strength of bolt, as governed by shear strength;\\
+%\indent $V_{dsb}$ = design strength of bolt, as governed by shear strength;\\
 \indent $f_u$ = ultimate tensile strength of a bolt;\\
 \indent $n_n$ =  number of shear planes with threads intercepting the shear plane; \\
 \indent $A_{nb}$ = net shear area of the bolt at threads, may be taken as the area corresponding to root diameter at the thread;\\
 \indent $\gamma_{mb}$ = partial safety factor for bolt\\
-%------------------------------------------------------
-\subsubsection{Bearing capacity}
+\indent $\beta_{lj}, \beta_{lg}$ = factors, given by;
+
 \begin{equation}
-V_{dpb} = 2.5 k_b d t f_u / \gamma_{mb}
+	\beta_{lj} = 1.075 - 0.005(l_j/d)
 \end{equation}
-%------------------------------------------------------
-\subsubsection{Tension capacity}
+
 \begin{equation}
-T_{db} = 0.90 f_{ub} A_n / \gamma_{mb} < f_{yb} A_{sb} / \gamma_{m0}
+	\beta_{lg} = 8/(3 + l_g/d)
 \end{equation}
+
+Where, \\
+\indent $l_J$ = length of joint (measured in the direction of load transfer); \\
+\indent $l_g$ = total thickness of the connected plates (grip length); \\
+\indent $d$ = nominal diameter of the bolt. \\
+%------------------------------------------------------
+\paragraph{Bearing capacity (\boldmath $V_{dpb}$)}
+\qquad \qquad [Reference: Cl. 10.3.4, IS 800:2007] \\ \\
+\label{bearing_capacity}
+\begin{equation}
+	V_{dpb} = \frac{2.5~ k_b~ d~ t~ f_u}{\gamma_{mb}}
+\end{equation}
+Where, \\
+\indent $k_b$ is smaller of $\frac{e}{3~d_0}, \frac{p}{3~d_0} - 0.25, \frac{f_{ub}}{f_u}, 1.0$; \\
+\indent $e, p$ = end and pitch distances of the bolt along bearing direction; \\
+\indent $d, d_0$ = diameter of bolt and bolt hole; \\
+\indent $t$ = summation of the thicknesses of the connected plates experiencing bearing stress in the same direction; \\
+\indent $\gamma_{mb}$ = partial safety factor.
+%------------------------------------------------------
+\subsubsection{Tension capacity (\boldmath $T_{db}$)}
+\qquad \qquad [Reference: Cl. 10.3.5, IS 800:2007] \\ \\
+\begin{equation}
+T_{db} = \frac{0.90~ f_{ub}~ A_n}{\gamma_{mb}}~ < \frac{~f_{yb}~ A_{sb}}{\gamma_{m0}}
+\end{equation}
+Where, \\
+\indent $f_{ub}$ = ultimate tensile stress of the bolt; \\
+\indent $f_{yb}$ = yield tensile stress of the bolt; \\
+\indent $A_n$ = net tensile stress area of the bolt; \\
+\indent $A_{sb}$ = shank area of the bolt; \\
+\indent $\gamma_{mb}, \gamma_{m0}$ = partial safety factors. \\
 %------------------------------------------------------
 \subsection{Friction grip type bolts}
 %------------------------------------------------------
-\subsubsection{Slip resistance}
+\subsubsection{Slip resistance (\boldmath $V_{dsf}$)}
+\qquad \qquad [Reference: Cl. 10.4.3, IS 800:2007] \\ \\
 \begin{equation}
-V_{nsf} = 0.7 \mu_f n_e  K_h A_{nb} f_{ub} / \gamma_{mf}
+	V_{nsf} = 0.7 \mu_f n_e  K_h A_{nb} f_{ub} / \gamma_{mf}
 \end{equation}
-%------------------------------------------------------
-\subsubsection{Tension capacity}
-\begin{equation}
-T_{df} = 0.90 f_{ub} A_n / \gamma_{mf} < f_{yb} A_{sb}  \frac{\gamma_{m1}}{\gamma_{m0} \gamma_{mf}}
-\end{equation}
-%======================================================
-%------------------------------------------------------
-\begin{comment}
-%======================================================
-\section{Number of bolts}
-%------------------------------------------------------
-Linear stress distribution is assumed.
- Number of bolts in the configuration \\
-
-	\begin{equation}
-		N \ge \sqrt{\frac{6 M n}{p T_{db}}}
-	\end{equation}
-	
 Where, \\
-
-\indent $n$ = Number of vertical columns in the connection \\
-\indent $V_{db}$ = Design strength of the bolt \\
- 
- For wide beams, with maximum allowe plate width,
+\indent $\mu_f$ = coefficient of friction (slip factor); \\
+\indent $n_e$ = number of effective interfaces offering frictional resistance to slip; \\
+\indent $K_h$ = 1.0 for bolts in clearance holes and 0.85 for bolts in oversized holes; \\
+\indent $F_o$ = proof load; \\
+\indent $\gamma_{mf}$ = partial safety factor.
+%------------------------------------------------------
+\subsubsection{Tension capacity (\boldmath $T_{df}$)}
+\qquad \qquad [Reference: Cl. 10.4.5, IS 800:2007] \\ \\
 \begin{equation}
-maximum plate width \ge 2(minumum end distace + minimum pitch + 50 mm) + beam web thickness
+T_{df} = \frac{0.9~ f_{ub}~ A_n}{\gamma_{mf}} ~\leq~ f_{yb} A_{sb}  \frac{\gamma_{m1}}{\gamma_{m0} \gamma_{mf}}
 \end{equation}
-  $n$ is taken as 4 
-	
-	\textbf{Assumption:} \\
-	
-%	The minimum number of bolts required for the flush plate configuration is 4 and that for the extended one way configuration is 6. 
-	Also, the flush end plate will be restricted to a maximum 6 number of bolts whereas the extended one way end plate will be restricted to 8 number of bolts.
-	
-	\vspace{5mm}
-					
-	Force/tension in the tension flange:
-		\begin{equation}
-			\boxed{Force = \frac{M}{(D - t_{f})}}
-		\end{equation}
-		
-			where, \\
-			$M$ = external factored moment + moment due to axial force \\
-			$D$ = depth of beam \\
-			$t_{f}$ = thickness of beam flange \\
-			
-			Number of bolts required at the tension flange
-			\begin{equation}
-				\boxed{= \frac{Force}{Tension \, capacity\, of\, single\, bolt}} 
-			\end{equation}
-			Number of bolts (provided) at the compression flange = 2
-			
-		\checkrefernces
-			\begin{enumerate}
-				\item Table-1, IS 800 : 2007
-				\item Table-2, IS 2062 : 2011
-			\end{enumerate}
-\end{comment}
+Where, \\
+\indent $f_{ub}$ = ultimate tensile stress of the bolt; \\
+\indent $f_{yb}$ = yield tensile stress of the bolt; \\
+\indent $A_n$ = net tensile stress area of the bolt; \\
+\indent $A_{sb}$ = shank area of the bolt; \\
+\indent $\gamma_{m1}, \gamma_{mf}$ = partial safety factors. \\
+
+%======================================================
+%------------------------------------------------------
+%======================================================
+\section{Minimum Number of bolts}
+%------------------------------------------------------
+Minimum number of bolts required is calculated based on the tension acting on bolts. A 20~\% reduction on bolt tensile capacity is assumed to account the prying force. Total number of bolts in the configuration is determined based on the layouts given in Sec. \ref{layout} \\
+Minimum number of bolts required at the tension side, $n_f$
+
+\begin{equation}
+	n_f = \frac{T_f}{0.8 * T_b}
+\end{equation}
+
+Where, \\
+\indent $T_b$ = tension capacity of bolts \\
+\indent $T_f$ = tension in flange, claculated as; \\
+
+\begin{equation}
+	T_{f} = \frac{M_u}{D - t_f} ~ + ~ \frac{H}{2}
+\end{equation}
+
+Where, \\
+\indent $M_u$ = factored bending moment acting on the connection. \\
+\indent $D$ = depth of the beam; \\
+\indent $t_f$ = thickness of the beam flange; \\
+\indent $H$ = axial force acting on the connection. \\
 
 \section{Layout of Bolts}
+\label{layout}
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.9\textheight]{test.png}
+\end{figure}
+
 
 **add images
 %------------------------------------------------------
