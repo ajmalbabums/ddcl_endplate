@@ -27,6 +27,7 @@
 \usepackage{fancyhdr}
 %\usepackage{fancyheadings}
 \usepackage{multirow}
+\usepackage{multicol}
 \usepackage[bookmarks=false]{hyperref}   % For creating hyperlinks
 \usepackage{comment}
 
@@ -87,6 +88,7 @@
 		\begin{center}
 			\includegraphics {logoOsdag.png}
 		\end{center}
+	
 			{\LARGE {Design and detailing checklist (DDCL)}}\\
 			\vspace{1cm}
 			{\LARGE {Beam to column end plate  moment connections}} \\
@@ -360,15 +362,44 @@ Where, \\
 \indent $t_f$ = thickness of the beam flange; \\
 \indent $H$ = axial force acting on the connection. \\
 
+
 \section{Layout of Bolts}
 \label{layout}
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=0.9\textheight]{test.png}
-\end{figure}
+\subsection{Flush end plate}
+	\begin{multicols}{2}
+		\begin{center}
+			\includegraphics{bolt_layout1.png}
+		\end{center}
+		\begin{center}
+			\includegraphics{bolt_layout2.png}
+		\end{center}
+	\end{multicols}
+\clearpage
+\subsection{Extended one way end plate}
+	\begin{multicols}{3}
+		\begin{center}
+			\includegraphics{bolt_layout3.png}
+		\end{center}
+		\begin{center}
+			\includegraphics{bolt_layout4.png}
+		\end{center}
+		\begin{center}
+			\includegraphics{bolt_layout5.png}
+		\end{center}
+	\end{multicols}
 
-
-**add images
+\subsection{Extended both ways end plate}
+	\begin{multicols}{3}
+		\begin{center}
+			\includegraphics{bolt_layout7.png}
+		\end{center}
+		\begin{center}
+			\includegraphics{bolt_layout8.png}
+		\end{center}
+		\begin{center}
+			\includegraphics{bolt_layout9.png}
+		\end{center}
+	\end{multicols}
 %------------------------------------------------------
 %					Detailing
 %------------------------------------------------------		
