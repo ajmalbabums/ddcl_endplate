@@ -75,7 +75,7 @@
 \pagestyle{fancy}
 \lhead{}
 \chead{}
-\rhead{\bfseries Moment Connection Module}
+\rhead{\bfseries Beam to Column End Plate Moment Connections}
 \lfoot{Osdag - Open steel design and graphics}
 \cfoot{}
 \rfoot{\thepage}
@@ -248,7 +248,7 @@ The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming t
 \subsection{Bearing type bolts}
 
 \subsubsection{Design strength of bolt (\boldmath $V_{db}$)}
-\qquad [Reference: Cl. 10.3.2, IS 800:2007] \\ \\ 
+\qquad \qquad [Reference: Cl. 10.3.2, IS 800:2007] \\ \\ 
 
 \noindent The design strength of bolt is taken as the smaller of the value as governed by shear, $V_{dsb}$ (\ref{shear_capacity}) and bearing $V_{dpb}$ (\ref{bearing_capacity}).
 
@@ -404,108 +404,154 @@ Where, \\
 %					Detailing
 %------------------------------------------------------		
 \chapter{Detailing}
-	{\centering
-	\includegraphics[width=5in]{svg_drawingFPEOW.png} \\}
+		
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=4in]{detailing.png}
+		\caption{detailing}
+	\end{figure}
 
-\section{Pitch and guage distances}
+\section{Pitch (p) and gauge (g) distances}
 	Pitch (p) is the distance between centres of two adjacent fasteners in a line lying in the direction of stress.
-	Guage (g) is the distance between centres of two adjacent fasteners transverse to the direction of stress.
+	Gauge (g) is the distance between centres of two adjacent fasteners transverse to the direction of stress.
 
-\subsection{Minimum pitch and guage distances}
-	\indent [Reference: Cl. 10.2.2, IS 800 : 2007]\\
+\subsection{Minimum pitch (p) and gauge distances}
+	\qquad \qquad [Reference: Cl. 10.2.2, IS 800 : 2007]\\
 		\begin{equation}
-			 \textbf{\,pitch/gauge} \ge 2.5 * bolt\, diameter
+			 pitch (p)/gauge (g) \ge 2.5 * bolt\, diameter
 		\end{equation}
 				
-\subsection{Maximum pitch and guage distances}
-\indent [Reference: Cl. 10.2.3, IS 800 : 2007]\\				
+\subsection{Maximum pitch (p) and gauge distances}
+\qquad \qquad [Reference: Cl. 10.2.3, IS 800 : 2007]\\				
 		\begin{equation}
-			\textbf{\,pitch/gauge \,} \leq min(32 * t,\, 300\, mm)
+			pitch (p)/gauge (g) \leq min(32 * t,\, 300\, mm)
 		\end{equation}
 		where, \\
-			\qquad t = thickness of thicker plate being connected 
+			\indent t = thickness of thicker plate being connected 
 
-\section{End and egde distance}
+\section{End (e) and edge (e') distances}
 				
-		\large {End (e)/ Edge (e') distance (\textbf{already reviewed}) [Reference: Clause 10.2.4, IS 800 : 2007]} \\
-				%\vspace{5mm}
-				\begin{equation}
-				\boxed{ 1.7 * bolt\,hole\, diameter\, \leq \textbf{\,end/edge \,} \leq 12*t*\varepsilon }
-				\end{equation}
-				
-				\hspace{10mm}
-				where,
-				
-				\hspace{30mm}
-				t = thickness of thicker plate being connected
-				
-				\hspace{30mm}
-				$\varepsilon = (250 / f_{y}) ^ {(1/2)}$ 
-				
-				\hspace{30mm}
-				$f_{y}$ = yield strength of beam/plate material 				 
-			
-			\vspace{2mm}
+\qquad \qquad [Reference: Clause 10.2.4.1, IS 800 : 2007] \\
+ 
+The edge distance (e') is the distance at right angles to the direction of stress from the centre of a hole to the adjacent edge. The end distance (e) is the distance in the direction of stress from the centre of a hole to the end of the element.
+
+\subsection{Minimum end (e) and edge (e') distances}
+\qquad \qquad [Reference: Cl. 10.2.4.2, IS 800 : 2007]\\
+
+For sheared or hand-flame cut edges;
+	\begin{equation}
+		{end (e)/edge (e')} ~ \geq ~ 1.7 * d_0
+	\end{equation}
+
+For rolled, machine-flame cut, sawn and planed edges;
+	\begin{equation}
+		{end (e)/edge (e')} ~ \geq ~ 1.5 * d_0
+	\end{equation}
+	
+Where $d_0$ is the diameter of bolt hole
+
+\subsection{Maximum end (e) and edge (e') distances}
+\qquad \qquad [Reference: Cl. 10.2.4.3, IS 800 : 2007]\\
+
+\begin{equation}
+{end (e)/edge (e')} ~ \leq ~ 12  t  \varepsilon
+\end{equation}			
+
+	\begin{equation}
+		\varepsilon = \sqrt{\frac{250}{f_y}}
+	\end{equation}
+	
+	Where, \\
+	\indent $d_0$ = diameter of the hole; \\
+	\indent $t$ = thickness of the thinner plate; \\
+	\indent $f_y$ = yield stress of the plate.
+
 				
 \section{Cross-centre gauge distance (g')} 
-(\textbf{refer fig. 1.1 and 1.2}) \\
+Cross centre gauge is the distance between 
 
-		\subsubsection{Flush end plate}
-		[Reference: AISC Design Guide - 16, table 3-6, page 22]
+		\subsection{Flush end plate}
+		\qquad \qquad [Reference: AISC Design Guide - 16, table 3-6, page 22]
 		\begin{equation}
-		\boxed{ 57 mm \leq \textbf{g'} \leq 95 mm }
+		 	57 mm \leq \textbf{g'} \leq 95 mm 
 		\end{equation}
 		
-		\subsubsection{Extended one way}
-		[Reference: AISC Design Guide - 16, table 4-7, page 39]
+		\subsection{Extended one way}
+		\qquad \qquad [Reference: AISC Design Guide - 16, table 4-7, page 39]
 		\begin{equation}
-			\boxed{ 69 mm \leq \textbf{g'} \leq 177 mm }
+			 69 mm \leq \textbf{g'} \leq 177 mm
 		\end{equation}
 
 \section{Distance between centre of bolt and edge of the beam flange ($p_{f}$)}
+	
+		\subsection{Flush end plate}
+		\qquad \qquad [Reference: AISC Design Guide - 16, table 3-6, page 22]
+			\begin{equation}
+				33 mm \leq p_{f} \leq 47 mm
+			\end{equation}
+			
+		\subsection{Extended one way}
+		\qquad \qquad [Reference: AISC Design Guide - 16, table 4-7, page 39]
+			\begin{equation}
+				25 mm \leq p_{f} \leq 38 mm
+			\end{equation}
 
- (\textbf{refer fig. 1.1 and 1.2})\\
-				
-					\subsubsection{Flush end plate}
-						[Reference: AISC Design Guide - 16, table 3-6, page 22]
-						\begin{equation}
-							\boxed{ 33 mm \leq p_{f} \leq 47 mm }
-						\end{equation}
-						
-						\subsubsection{Extended one way}
-						[Reference: AISC Design Guide - 16, table 4-7, page 39]
-						\begin{equation}
-							\boxed{ 25 mm \leq p_{f} \leq 38 mm }
-						\end{equation}
-
-	    
+\section{Projection of plate beyond the flanges ($c$)}
+\label{cover}
+This specifies the projection of end plate beyond the bottom and top flanges of beam in flush end plate connection and bottom flange of beam in one way extended end plate connection.
 
 %------------------------------------------------------
 %					Plate Dimensions
 %------------------------------------------------------	
 \chapter{Plate Dimensions} 
 \section{Plate height $(h_{p})$}
+	\subsection{Minimum plate height}
+	\qquad \qquad [Reference: based on detailing] \\ \\
+	\subsubsection{for flush end plate}
+		\begin{equation}
+			h_p \ge D + 2 * (t_{wf} + cover)
+		\end{equation}
+	
+	\subsubsection{for extended one way end plate}
+	\begin{equation}
+	h_p \ge D + (2 * t_{wf}) + p_f + e + cover
+	\end{equation}
+	
+	\subsubsection{for extended both ways end plate}
+	\begin{equation}
+	h_p \ge D + 2 * (t_{wf} + n'*p + p_f + e + cover)
+	\end{equation}
 				
- \large {$h_{p}$ for flush end plate}
-					\begin{equation}
-					\boxed{h_{p} = beam\, depth + (2 * size\, of\, weld\, at\, flange) + (2 * some\, assumed\, cover)}
-					\end{equation}
-		
-\large {$h_{p}$ for extended one-way end plate}
-					\begin{equation}
-					\boxed{h_{p} = beam\, depth + end\, distance + p_{f} + size\, of\, weld\, at\, \,flange + some\, assumed\, cover}
-					\end{equation}
-					
-			
-\section{\large Plate width $(w_{p})$}
-			
-				\begin{equation}
-					\boxed{w_{p} = width \,of \,beam \,flange}
-				\end{equation}
+		Where, \\
+	\indent $D$ = depth of beam; \\
+	\indent $t_{wf}$ = size of weld at flange; \\
+	\indent $p_f$ =  distance between centre of the bolt and toe of weld at flange;\\
+	\indent $e$ = end distance; \\
+	\indent $cover$ = as per \ref{cover}\\
+	\indent $n'$ = number of rows of bolts beyond the flange
 
-\section{Thickness of the plate $(t_{p})$}
+\section{Plate Width (\boldmath $w_p$)}
+\qquad \qquad [Reference: based on detailing] \\
+	\begin{equation}
+		w_p = g' + (2 * e')
+	\end{equation}
 
-Plate thickness for flush end plate
+\subsection{Minimum plate width (\boldmath $w_{p_{min}}$)} 
+\qquad \qquad [Reference: based on detailing] \\
+	\begin{equation}
+		w_{p_{min}} = b_f
+	\end{equation}
+
+\subsection{Maximum plate width (\boldmath $w_{p_{max}}$)}
+\qquad \qquad [Reference: AISC Design Guide - 16] \\
+	\begin{equation}
+		w_{p_{max}} = b_f + 25~mm
+	\end{equation}
+			
+
+
+\section{Plate thickness $(t_{p})$}
+ 
 	
 	
 
