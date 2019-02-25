@@ -2,12 +2,6 @@
 % Beam to Column End Plate Moment Connection 
 % Author: Ajmal Babu M S
 \documentclass[11.5pt,a4paper,oneside]{report}
-\usepackage{titlesec}
-\setcounter{secnumdepth}{4}
-\titleformat{\paragraph}
-{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{palatino}
@@ -42,6 +36,38 @@
 %======================================================
 %					New Commands
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% To add a new 'sub sub sub section before paragraph
+\usepackage{titlesec}
+\titleclass{\subsubsubsection}{straight}[\subsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+	{3.25ex \@plus1ex \@minus.2ex}%
+	{-1em}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+	{3.25ex \@plus1ex \@minus .2ex}%
+	{-1em}%
+	{\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+%------------------------------------------------------
 % To make the manual calculaion document, comment out following section
 % and uncomment next section.
 %------------------------------------------------------
@@ -93,7 +119,7 @@
 			\vspace{1cm}
 			{\LARGE {Beam to column end plate  moment connections}} \\
 			\vspace{1cm}		
-			\includegraphics[width=7in]{FP_OWE.png} \\	
+			\includegraphics[height=2in]{view.png} \\	
 			\vspace{3cm}
 			 {\small {Prepared by:}} \\
 			 {\Large \textbf {Ajmal Babu M S}} \\	
@@ -153,7 +179,7 @@
 %------------------------------------------------------
 \chapter{Connecting Members}
 %
-The column and beam are allowed to connect by following connectivites.
+The column and beam are allowed to connect by following connectivities.
 \begin{itemize}
 	\item Column flange to beam web
 	\item Column web to beam web
@@ -189,28 +215,36 @@ Where, \\
 
 
 \okornot
+\chapter{Material Strength}
 %------------------------------------------------------
 %					Material strength
 %------------------------------------------------------
-\chapter{Material Strength}
 %
 The column, beam and end plate are supposed to have the same strengths following the Indian Standards. The grades available in IS 800:2007 and IS 2062:2010 are included with a warning that "user is using a section of grade which is not available in the latest version of IS 2062". The values of material strength will be subjected to the following limits in \textbf{MPa};
-\section{Yield Stress limits}
+\section{Yield Stress limits for beam and column}
 \qquad \qquad[Reference: Table-1, IS 800 : 2007; Table-2, IS 2062 : 2011]
 	\begin{equation}
 		250 \leq f_{y} \leq 650
 	\end{equation}
-\section{Ultimate Stress limits}
+	
+\section{Ultimate Stress limits for beam and column}
 \qquad \qquad[Reference: Table-1, IS 800 : 2007; Table-2, IS 2062 : 2011]
 	\begin{equation}
 		410 \leq f_{u} \leq 780
 	\end{equation}
+	
+\section{Yield Stress limit for end plate}
+\qquad \qquad[Reference: AISC]
+\begin{equation}
+	f_{y} \leq 344
+\end{equation}
 
 	\okornot
+
+\chapter{Factored loads}
 %------------------------------------------------------
 %					Factored Loads
 %------------------------------------------------------
-\chapter{Factored loads}
 %
 Factored values of the moment (in kNm) and vertical shear force  (in kN) acting on connection is mandatorily taken from the user. An optional field for axial force (in kN) is also given in the input dock if it is acting.\\
 Assuming the beam is laterally supported and factored shear force does not exceed 0.6 times its design shear strength, 
@@ -236,10 +270,11 @@ The minimum moment capacity of connection,
 		\indent $M_{min}$ = Minimum moment capacity of the connection
 
 \okornot
+
+\chapter{Bolt}
 %------------------------------------------------------
 %					Bolt
 %------------------------------------------------------
-\chapter{Bolt}
 %
 The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming to IS 1363 (part 1) 2002], type of bolt action (bearing or friction grip) and grade of bolts are taken from the user as inputs. The nominal tensile strength of bolt [IS 1367 (part 3): 2002] is considered as the ultimate tensile strength by default, and the user is allowed to overwrite it in 'Design Preference'. The bolt hole type is taken as 'Standard' by default and the user is allowed to change it to 'Over-sized' in 'Design Preferences,' and the bolt hole diameter is calculated accordingly, conforming to cl. 10.2.1 of IS 800:2007. The coefficient of friction (for friction grip bolts) is taken as 0.3 by default and the user is allowed to change it from a dropdown list with values given in table 20 of IS 800:2007. 
 %======================================================
@@ -257,7 +292,7 @@ The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming t
 \end{equation}
 
 %------------------------------------------------------
-\paragraph{Shear capacity (\boldmath $V_{dsb}$)}
+\subsubsubsection{Shear capacity (\boldmath $V_{dsb}$)}
 \label{shear_capacity}
 \qquad \qquad [Reference: Cl. 10.3.3, IS 800:2007] \\ \\
 Currently, conservatively assuming all the shear planes passes through the threads of the bolt. Shear capacity of bearing bolts,
@@ -285,7 +320,7 @@ Where, \\
 \indent $l_g$ = total thickness of the connected plates (grip length); \\
 \indent $d$ = nominal diameter of the bolt. \\
 %------------------------------------------------------
-\paragraph{Bearing capacity (\boldmath $V_{dpb}$)}
+\subsubsubsection{Bearing capacity (\boldmath $V_{dpb}$)}
 \qquad \qquad [Reference: Cl. 10.3.4, IS 800:2007] \\ \\
 \label{bearing_capacity}
 \begin{equation}
@@ -299,6 +334,7 @@ Where, \\
 \indent $\gamma_{mb}$ = partial safety factor.
 %------------------------------------------------------
 \subsubsection{Tension capacity (\boldmath $T_{db}$)}
+\label{tension_bearing}
 \qquad \qquad [Reference: Cl. 10.3.5, IS 800:2007] \\ \\
 \begin{equation}
 T_{db} = \frac{0.90~ f_{ub}~ A_n}{\gamma_{mb}}~ < \frac{~f_{yb}~ A_{sb}}{\gamma_{m0}}
@@ -325,6 +361,7 @@ Where, \\
 \indent $\gamma_{mf}$ = partial safety factor.
 %------------------------------------------------------
 \subsubsection{Tension capacity (\boldmath $T_{df}$)}
+\label{tension_friction}
 \qquad \qquad [Reference: Cl. 10.4.5, IS 800:2007] \\ \\
 \begin{equation}
 T_{df} = \frac{0.9~ f_{ub}~ A_n}{\gamma_{mf}} ~\leq~ f_{yb} A_{sb}  \frac{\gamma_{m1}}{\gamma_{m0} \gamma_{mf}}
@@ -350,7 +387,7 @@ Minimum number of bolts required at the tension side, $n_f$
 
 Where, \\
 \indent $T_b$ = tension capacity of bolts \\
-\indent $T_f$ = tension in flange, claculated as; \\
+\indent $T_f$ = tension in flange, calculated as; \\
 
 \begin{equation}
 	T_{f} = \frac{M_u}{D - t_f} ~ + ~ \frac{H}{2}
@@ -400,11 +437,120 @@ Where, \\
 			\includegraphics{bolt_layout9.png}
 		\end{center}
 	\end{multicols}
+
+\section{Tension in bolts}
+\subsection{Tension due to applied axial force}
+\quad \quad[Reference: Cl. 10.11.2.1(a), IS 800:2007] \\ \\
+The applied axial force is considered to be equally shared by the bolts. The tension in bolts due to applied axial force ($T_{ix}$) is calculated as 
+\begin{equation}
+T_{ix} = F_x / n  
+\end{equation}
+Where, \\
+\noindent $F_x$ = applied axial force, \\
+\noindent $n$ = Total number of bolts in the configuration \\
+\subsection{Tension due to applied moment}
+\quad \quad[Reference: Cl. 10.11.2.1(b), IS 800:2007] \\ \\
+The tension due to applied moment ($T_{im}$) is considered to vary linearly with the distance from the relevant neutral axis. As column stiffeners are providing, the end plate connection can be assumed as pivoting about the bottom (compression) flange and the neutral axis can be assumed as the mid depth of bottom compression flange.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\linewidth]{tension.png}
+	\caption{Linear distribution of tensile forces in bolts}
+	\label{fig: tensile_distribution}
+\end{figure}
+
+The nominal tensile forces in the bolts ($T_{im}$) are calculated assuming it to be proportional to the distance of the bolt from the neutral axis ($l_i$) as in Fig.~\ref{fig: tensile_distribution}. For calculating the bolt tensions in the rows immediately above and below the tension flange, $l_i$ is taken as the distance of the tension flange from the neutral axis as the top portion of the plate behaves as a T- stub, symmetric about the tension flange. Tension in bolts near to the compression flange can be neglected. [INSDAG Teaching Materials, Narayanan, et al., 2001, DoSS, N.Subramanian, 2014]. 
+
+\begin{equation}
+	T_{im} = k * l_i 
+\end{equation}
+where $k$ is a constant\\
+Moment acting on the connection due to applied moment, 
+\begin{equation}
+	M =  \sum T_{im} * l_i  = k \sum {l_i}^2
+\end{equation}
+
+\begin{equation}
+	T_{im} = \frac {M l_i} {\sum {y_i}^2}
+\end{equation}
+\subsection{Prying force in bolts}
+\quad \quad[Reference: Cl. 10.4.7, IS 800:2007] \\
+
+\begin{equation}
+	Q = \frac{l_v}{2~l_e} \bigg [T_e - \frac{\beta~ \eta~ f_o~b_e~t^{4}}{27~ l_e~l_v^{2}} \bigg]
+\end{equation}
+
+Where, \\
+\indent $l_v$ = distance from the bolt centreline to the toe of the fillet weld or to half the root radius for a rolled section;\\
+\indent $l_e$ = distance between prying force and bolt centreline, and, is given by;
+
+\begin{equation}
+	l_e = minimum~ \Bigg(e,~1.1~t~ \sqrt{\frac{\beta~f_o}{f_y}}~ \Bigg)
+\end{equation}
+
+\indent $e$ = end distance; \\
+\indent $\beta$ = 2 for non pre-tensioned bolt and 1 for pre-tensioned bolt; \\
+\indent $\eta$ = 1.5; \\
+\indent $b_e$ = effective width of flange per pair of bolts; \\
+\indent $f_o$ = proof stress, and; \\
+\indent $t$ = thickness of the end plate. \\
+
+
+
+
+
+
+\subsection{Check for total tension in bolts}
+
+
+Tension in critical bolt(s) due to applied loads and prying forces is checked against the tension capacity ($T_d$) of bolt defined in Sec. \ref{tension_bearing} and Sec. \ref{tension_friction} \\
+
+\begin{equation}
+	T_{cx} + T_{cm} + Q \le T_d
+\end{equation}
+
+Where, \\
+\indent $T_{cx}$ = tension in critical bolt due to applied axial force \\
+\indent $T_{cm}$ = tension in critical bolt due to applied moment \\
+\indent $Q$ = prying force acting on critical bolt \\
+
+%---------------------------------------------------------------------		
+\section{Combined shear and tension in bolts}
+\subsection{For friction grip bolt(s)}
+\qquad \qquad [Reference: Cl. 10.4.6, IS 800:2007] \\ \\
+
+\begin{equation}
+	\bigg(\frac{V_{sf}}{V_{df}}\bigg)^{2} ~ + ~ \bigg(\frac{T_{f}}{T_{df}}\bigg)^{2} ~ \leq ~ 1.0
+\end{equation}
+
+Where, \\
+\indent $V_{sf}$ = applied factored shear at design load; \\
+\indent $V_df$ = design shear strength of bolt; \\
+\indent $T_f$ = externally applied factored tension at design load, and; \\
+\indent $T_df$ = design tension strength of bolt; \\
+
+
+\subsection{For bearing bolt(s)}
+\qquad \qquad [Reference: Cl. 10.3.6, IS 800:2007] \\ \\
+
+\begin{equation}
+	\bigg(\frac{V_{sb}}{V_{db}}\bigg)^{2} ~ + ~ \bigg(\frac{T_{b}}{T_{db}}\bigg)^{2} ~ \leq ~ 1.0
+\end{equation}
+
+Where, \\
+\indent $V_{sb}$ = factored shear force acting on the bolt; \\
+\indent $V_db$ = design shear capacity of bolt; \\
+\indent $T_b$ = factored tensile force acting on the bolt, and; \\
+\indent $T_db$ = design tension capacity of bolt; \\
+
+\okornot
+
+
+	
+\chapter{Detailing}
 %------------------------------------------------------
 %					Detailing
-%------------------------------------------------------		
-\chapter{Detailing}
-		
+%------------------------------------------------------	
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=4in]{detailing.png}
@@ -500,11 +646,12 @@ Cross centre gauge is the distance between
 \label{cover}
 This specifies the projection of end plate beyond the bottom and top flanges of beam in flush end plate connection and bottom flange of beam in one way extended end plate connection.
 
+
+\chapter{End Plate} 
 %------------------------------------------------------
-%					Plate Dimensions
+%					End Plate
 %------------------------------------------------------	
-\chapter{Plate Dimensions} 
-\section{Plate height $(h_{p})$}
+\section{Plate height \boldmath $(h_{p})$}
 	\subsection{Minimum plate height}
 	\qquad \qquad [Reference: based on detailing] \\ \\
 	\subsubsection{for flush end plate}
@@ -551,14 +698,41 @@ This specifies the projection of end plate beyond the bottom and top flanges of 
 
 
 \section{Plate thickness $(t_{p})$}
- 
-	
-	
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\linewidth]{prying.png}
+	\caption{Prying force}
+	\label{fig:prying}
+\end{figure}
 
+
+The required minimum thickness of plate is determined from it's plastic moment capacity~($M_p$), equated to the moment at toe of weld~($M$). The tension in flange ($T_f$) will induce prying force in bolts (Q). As the tension in flange increases, the portion of the end plate near the toe of weld will begin to separate from the connected member by forming a plastic hinge. Thus, this portion of the end plate (indicated by `A' in \ref{fig:prying}) is the critical section.\\
+
+
+\textbf{Moment at toe of weld} \\
+	\begin{equation}
+		M = \frac{T_f}{2}  l_v ~ - ~ Q ~ l_e
+	\end{equation}
+
+\textbf{Plastic Moment $M$ with $M_p$} \\
+	\begin{equation}
+		M_p = \bigg(\frac{f_y}{1.10}\bigg) ~ \bigg(\frac{b_e~t_{p}^{2}}{4}\bigg)
+	\end{equation}
+	
+\textbf{The required thickness of end plate ($t_{p,required}$)} \\
+
+	\begin{equation}
+		t_{p,required} = \sqrt{M~ \bigg(\frac{1.10}{f_y}\bigg) ~ \bigg(\frac{4}{b_e}\bigg)}
+	\end{equation}
+	Where, \\
+\indent $f_y$ = yield strength of plate; \\
+\indent $b_e$ = effective width of end plate per pair of bolt ($\frac{w_p}{2}$, for 2 columns of bolt).
+
+
+\chapter{Weld}
 %------------------------------------------------------
 %					Weld
-%------------------------------------------------------	
-\chapter{Weld} 
+%------------------------------------------------------	 
 \section{Weld size}
 \subsection{Flange weld}
 \subsection{Web weld}
