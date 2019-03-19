@@ -924,6 +924,7 @@ The resultant shear stress acting on web welds,
 %------------------------------------------------------
 %					Member Capacities and Stiffeners
 %------------------------------------------------------	 
+\section{Check for capacity of beam flange}
 \section{Horizontal stiffener in compression region}
 The horizontal stiffener in compression region is provided to counteract
 the compressive force, 
@@ -946,12 +947,38 @@ The stiffener has to be checked for,
 
 
 \subsection{Local web yielding}
-Stiffeners are provided to prevent local web yielding, 
-if
+\qquad \qquad[Reference: DoSS, N.Subramanian, pp504] \\ \\
+Capacity of column web at the toe of flange-to-web fillet against local yielding,
+(Assuming a load dispersion of 2.5 to 1 slop as per IS~800:2007, Cl. 8.7.4).
+
 \begin{equation}
-	P_{bf} \geq  t_{wc}(5~t_{fc} + 5~r_{1c} + t_{fb}) \frac{f_{yw}}{\gamma_{m0}}
+	R_{wc} = t_{wc}(5~t_{fc} + 5~r_{1c} + t_{fb}) \frac{f_{yw}}{\gamma_{m0}}
 \end{equation}
 
+Stiffeners are provided if,
+\begin{equation}
+	P_{bf} \geq  R_{wc}
+\end{equation}
+Stiffeners are provided on either side of the column web and for half depth of the column web.
+The dimensions of column web yielding stiffeners will be, \\
+\begin{equation}
+	length = \frac{d_c-2t_{fc}}{2}
+\end{equation}
+\begin{equation}
+	width = \frac{b_{fc}-t_{wc}}{2}
+\end{equation}
+\begin{equation}
+	thickness \ge \frac{P_{bf}-R_{wc}}{f_{yst}/\gamma_{m0}}
+\end{equation}
+
+\subsection{Compression buckling of web}
+
+
+
+
+
+
+\subsection{Web crippling}
 
 
 
