@@ -24,6 +24,8 @@
 \usepackage{multicol}
 \usepackage[bookmarks=false]{hyperref}   % For creating hyperlinks
 \usepackage{comment}
+\usepackage{enumitem}
+
 
 \makeatletter
 \makeatother
@@ -525,9 +527,9 @@ Where, \\
 
 Where, \\
 \indent $V_{sf}$ = applied factored shear at design load; \\
-\indent $V_df$ = design shear strength of bolt; \\
+\indent $V_{df}$ = design shear strength of bolt; \\
 \indent $T_f$ = externally applied factored tension at design load, and; \\
-\indent $T_df$ = design tension strength of bolt; \\
+\indent $T_{df}$ = design tension strength of bolt; \\
 
 
 \subsection{For bearing bolt(s)}
@@ -539,9 +541,9 @@ Where, \\
 
 Where, \\
 \indent $V_{sb}$ = factored shear force acting on the bolt; \\
-\indent $V_db$ = design shear capacity of bolt; \\
+\indent $V_{db}$ = design shear capacity of bolt; \\
 \indent $T_b$ = factored tensile force acting on the bolt, and; \\
-\indent $T_db$ = design tension capacity of bolt; \\
+\indent $T_{db}$ = design tension capacity of bolt; \\
 
 \okornot
 
@@ -733,10 +735,229 @@ The required minimum thickness of plate is determined from it's plastic moment c
 %------------------------------------------------------
 %					Weld
 %------------------------------------------------------	 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{weld_stress.png} \\
+	{(a) Welding in the end plate connection, (b) Actual shear stress distribution, (c) Assumed shear stress distribution, (d) Actual bending moment distribution, (e) Assumed bending moment distribution}
+	\caption[Weld stress]{Weld profile}
+	\label{fig:weld_stress}
+\end{figure}
+
+In a beam to column end plate moment connection, the beam is welded to the end plate as shown in figure~\ref{fig:weld_stress}~(a). Since the locations of maximum bending and shearing stresses are not same (figure~\ref{fig:weld_stress}~b and d), it can be safely assumed that the web welds would carry the entire shear force and the flange welds would carry entire bending moment [Ref: DoSS, N. Subramanian] 
+
 \section{Weld size}
-\subsection{Flange weld}
-\subsection{Web weld}
-\section{Weld length}
+
+\subsection{Minimum weld size}
+\quad \quad [Reference: Table 21, IS 800:2007] \\
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.3\linewidth]{min_weld}
+	\caption{Minimum Size of First Run or of a Single Run Fillet Weld}
+	\label{fig:minweld}
+\end{figure}
+
+\subsection{Maximum weld size}
+\quad \quad [Reference: Cl. 10.5.3, IS 800:2007] \\
+
+The maximum size of weld = Thickness of thinner element being welded. \\
+
+
+\subsection{Throat size of weld}
+\quad \quad [Reference: Cl. 10.5.3.2, IS 800:2007] \\
+Throat size of weld, 
+\begin{equation}
+	t_t = 0.70 * z
+\end{equation}
+
+
+\section{Weld lengths}
+As a smaller size of weld will be economical than a larger one for the same strength, maximum possible lengths are provided on flanges and web of beam as shown in figure~\ref{fig:weldlength}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.2\linewidth]{weld_length}
+	\caption{Flange and web welds}
+	\label{fig:weldlength}
+\end{figure}
+
+\subsection{Length of flange welds}
+
+Welds are given in above and below of flanges. \\
+The length of weld above the flange, 
+\begin{equation}
+	l_{wf1} = w
+\end{equation}
+
+The length of weld below the flange, 
+\begin{equation}
+	l_{wf2} = \frac{w- t_w - 2~r_1 - 2~r_2 }{2} \nless 4~z_f
+\end{equation}
+
+Where, \\
+\indent $w$ = width of flange, \\
+\indent $t_w$ = thickness of beam web, \\
+\indent $r_1$ = root radius of beam, \\
+\indent $r_2$ = toe radius of beam, \\
+
+Effective lengths of welds at flange, \\
+\begin{equation}
+	l_{wf1,eff} = l_{wf1} - 2~z_f
+\end{equation}
+\begin{equation}
+	l_{wf2,eff} = l_{wf2} - 2~z_f 
+\end{equation}
+
+
+The total effective length of welds at flange, \\
+
+\begin{equation}
+	l_{wf,eff} = l_{wf1,eff} + 2~l_{wf2,eff}
+\end{equation}
+
+%\begin{equation}
+%	 = 2~w - t_w - 2~r_1 - 2~r_2 - 6~z_f 
+%\end{equation}
+
+\subsection{Length of web welds}
+Welds are given on both flat sides of beam web (marked as $h_1$ in \textit{SP 6-1: ISI Handbook for Structural Engineers -Part-~1 Structural Steel Sections, BIS, 1964}). \\
+
+The flat web length can be computed as, 
+\begin{equation}
+	l_{ww} = d- 2(t_f + \frac{B-t_w}{2}~\tan (\alpha-\pi/\small{2} + r_1)
+\end{equation}
+
+The effective length of welds at either side of beam web, \\
+
+\begin{equation}
+	l_{ww,eff} = l_{ww}-2~z_w
+\end{equation}
+
+
+\subsection{Check for long joint of weld}
+Reduction for long joints in weld groups are applied as,
+if $l_w > 150~t_t$,
+
+\begin{equation}
+	\beta_{lw}=1.2-\frac{0.2~l_j}{150~t_t} \le 1.0
+\end{equation}
+
+
+\section{Shear stresses in welds}
+
+\subsection{Design shear strength of fillet weld}
+\quad \quad [Reference: Cl. 10.5.7.1.1, IS 800:2007] \\
+
+\begin{equation}
+	f_{wd} = \beta_{lw} \frac{f_u}{\sqrt{3}~\gamma_{mw}}
+\end{equation}
+where, \\
+\indent $f_u$ = smaller of the ultimate stress of the weld or of the parent metal, \\
+\indent $\gamma_{mw}$ = partial safety factor, 1.25 for shop weld and 1.50 for field weld, \\
+\indent $\beta_{lw}$ = reduction factor for long joint, if applicable. \\
+
+\subsection{Design forces at welds due to loads}
+
+\subsubsection{Design force on welds due to applied axial load}
+\quad \quad[Reference: Cl. 10.11.2.1(a), IS 800:2007] \\ \\
+The applied axial force is considered to be equally shared by the weld group.
+The design shear force on unit length of fillet weld group due to axial force,
+\begin{equation}
+	F_{wx} = \frac{F_x}{2(l_{ww,eff} + l_{wf,eff})}
+\end{equation}
+
+\subsubsection{Design stress on welds due to applied moment}
+
+The moment is transferred through beam flanges in the form of tension and compression.
+%The design bending stress on either of flanges due to the applied moment,
+%\begin{equation}
+%	f_b = M/Z
+%\end{equation}
+The design tension/compression on either of beam flanges due to applied moment,
+\begin{equation}
+	T_{f} = \frac{M_u}{D - t_f}
+\end{equation}
+The design shear force on unit length of fillet weld group (at flanges) due to applied moment,
+
+\begin{equation}
+	F_{wt} = \frac{T_{f}}{l_{wf,eff}}
+\end{equation}
+
+\subsubsection{Design stress on welds due to applied vertical shear}
+The shear force acting at the connection can be assumed as transfers to web welds only. (Refer fig.~\ref{fig:weld_stress}).
+The design shear force on unit length of fillet weld group (at web) due to applied vertical shear force,
+
+\begin{equation}
+	F_{wv} = \frac{V}{2~l_{ww,eff}}
+\end{equation}
+
+
+\subsection{Design stresses at welds due to loads}
+
+The flange welds possess shear stresses due to applied moment and applied axial force.
+The web welds posses shear stresses due to applied shear force and applied axial force.
+
+\subsubsection{Shear stress at flange welds}
+The total shear stress at flange welds due to applied moment (in the form of tension/compression)
+and applied axial force,
+
+
+\begin{equation}
+	f_{wf} = \frac{F_{wx} + F_{wt}}{0.7~z_f} \leq f_{wd}
+\end{equation}
+
+\subsubsection{Compression stress check at flange weld}
+To be discussed
+
+\subsubsection{Shear stress at web welds}
+The applied shear force acts in vertically downward and 
+applied axial force acts in the longitudinal direction of beam,
+which are orthogonal. 
+The resultant shear stress acting on web welds,
+
+\begin{equation}
+	f_{ww} = \frac{\sqrt{{F_{ww}}^2 + {F_{wx}}^2}}{0.7~z_w} \leq f_{wd}
+\end{equation}
+
+
+\chapter{Member Capacities and Stiffeners}
+%------------------------------------------------------
+%					Member Capacities and Stiffeners
+%------------------------------------------------------	 
+\section{Horizontal stiffener in compression region}
+The horizontal stiffener in compression region is provided to counteract
+the compressive force, 
+\begin{equation}
+	P_{bf} = \frac{M_u}{d_b - t_{fb}} - F_x
+\end{equation}
+where, \\
+\indent $P_{bf}$ = compressive force at beam flange \\ 
+\indent ${M_u}$ = applied bending moment \\ 
+\indent $d_b$ = depth of beam \\
+\indent $t_{fb}$ = thickness of beam flange \\
+\indent $F_x$ = applied factored axial force \\
+
+The stiffener has to be checked for, 
+\begin{enumerate}[label=(\alph*)]
+	\item local web yielding
+	\item compression bucking of the web
+	\item web crippling
+\end{enumerate}
+
+
+\subsection{Local web yielding}
+Stiffeners are provided to prevent local web yielding, 
+if
+\begin{equation}
+	P_{bf} \geq  t_{wc}(5~t_{fc} + 5~r_{1c} + t_{fb}) \frac{f_{yw}}{\gamma_{m0}}
+\end{equation}
+
+
+
+
+
+
+\section{Horizontal stiffener in tension region}
 %------------------------------------------------------
 %------------------------------------------------------
 \end{Form}
