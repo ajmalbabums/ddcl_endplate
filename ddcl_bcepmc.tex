@@ -25,6 +25,22 @@
 \usepackage[bookmarks=false]{hyperref}   % For creating hyperlinks
 \usepackage{comment}
 \usepackage{enumitem}
+\usepackage[
+	nonumberlist, %do not show page numbers
+	acronym,      %generate acronym listing
+	toc,          %show listings as entries in table of contents
+	section]      %use section level for toc entries
+	{glossaries}
+	
+%Generate a list of symboles
+\newglossary[slg]{symbolslist}{syi}{syg}{List of symbols}
+
+%Remove the dot at the end of glossary descriptions
+\renewcommand*{\glspostdescription}{}
+
+%Activate glossary commands
+\makeglossaries
+
 
 
 \makeatletter
@@ -94,6 +110,22 @@
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Change 'Chapter' to 'Check'
 \renewcommand{\chaptername}{Check}
+%------------------------------------------------------
+
+% Add, label and describe symbol to list of symbols
+\newcommand{\newgls}[3]{
+	
+	\newglossaryentry{#2}{
+		name=${#1}$,
+		description={#3},
+		sort=wcf, type=symbolslist
+	}
+	\indent \gls{#2} = {#3}}
+
+% Fetch from list of symbols
+\newcommand{\oldgls}[2]{
+	\indent \gls{#1} = {#2} }
+
 %======================================================
 %------------------------------------------------------
 \begin{document}
@@ -139,6 +171,10 @@
 \end{titlepage}
 %------------------------------------------------------
 \tableofcontents
+\newpage
+%Print list of symbols
+\printglossary[type=symbolslist,style=long]
+
 \begin{Form}
 %------------------------------------------------------
 \pagenumbering{arabic}
@@ -187,32 +223,44 @@ The column and beam are allowed to connect by following connectivities.
 	\item Column web to beam web
 \end{itemize}
 %
-The column and beam sections are provided as a dropdown list in Osdag input dock. Tapered sections from IS 808:1989 and parallel flange sections from the upcoming version of IS 808 are included. Old sections are highlighted in red colour in the dropdown with a warning that "user is using an old section which is not available in latest version of IS 808" in the message log.
+\begin{comment}
+The column and beam sections are provided 
+as a dropdown list in Osdag input dock. 
+Tapered sections from IS 808:1989 and 
+parallel flange sections from the upcoming 
+version of IS 808 are included. 
+Old sections are highlighted in red colour 
+in the dropdown with a warning that 
+"user is using an old section which is not 
+available in latest version of IS 808" 
+in the message log.
+\end{comment}
 %------------------------------------------------------
 %\section{Connectivity}
 %------------------------------------------------------
 %
 \section{Column Section}
 %
-All the columns sections are shown in dropdown.
+%All the columns sections are shown in dropdown.
 %------------------------------------------------------
 \section{Beam Section}
 %
 For column flange to beam web connectivity, 
 \begin{equation}
-	w_{bf} \le w_{cf}
+	w_{fb} \le w_{fc}
 \end{equation}
 %
 For column web to beam web connectivity,
 \begin{equation}
-	w_{bf} \le d_c - 2 (t_{cf} + r_{c1} + gap)
+	w_{fb} \le D_c - 2 (t_{fc} + r_{1c} + gap)
 \end{equation}
 Where, \\
-\indent $w_{bf}$ = Width of beam flange \\
-\indent $w_{cf}$ =  Width of column flange \\
-\indent $d_c$ = Depth of column \\
-\indent $t_{cf}$ = Thickness of column flange \\
-\indent $r_{c1}$ = Root radius of column \\
+
+\newgls{w_{fb}}{wfb}{Width of beam flange}
+\newgls{w_{fc}}{wfc}{Width of column flange}
+\newgls{D_c}{Dc}{Depth of column} 
+\newgls{t_{fc}} {tfc} {Thickness of column flange} 
+\newgls{r_{1c}} {r1c} {Root radius of column} \\
 \indent $gap$ = Clearance between beam and column flanges, 5mm
 
 
@@ -222,7 +270,15 @@ Where, \\
 %					Material strength
 %------------------------------------------------------
 %
-The column, beam and end plate are supposed to have the same strengths following the Indian Standards. The grades available in IS 800:2007 and IS 2062:2010 are included with a warning that "user is using a section of grade which is not available in the latest version of IS 2062". The values of material strength will be subjected to the following limits in \textbf{MPa};
+\begin{comment}
+	The column, beam and end plate are supposed to have 
+	the same strengths following the Indian Standards. 
+	The grades available in IS 800:2007 and IS 2062:2010 
+	are included with a warning that 
+	"user is using a section of grade which is 
+	not available in the latest version of IS 2062". 
+\end{comment}
+The values of material strength will be subjected to the following limits in \textbf{MPa};
 \section{Yield Stress limits for beam and column}
 \qquad \qquad[Reference: Table-1, IS 800 : 2007; Table-2, IS 2062 : 2011]
 	\begin{equation}
@@ -248,9 +304,11 @@ The column, beam and end plate are supposed to have the same strengths following
 %					Factored Loads
 %------------------------------------------------------
 %
-Factored values of the moment (in kNm) and vertical shear force  (in kN) acting on connection is mandatorily taken from the user. An optional field for axial force (in kN) is also given in the input dock if it is acting.\\
-Assuming the beam is laterally supported and factored shear force does not exceed 0.6 times its design shear strength, 
-The minimum moment capacity of connection,
+\begin{comment}
+	Factored values of the moment (in kNm) and vertical shear force  (in kN) acting on connection is mandatorily taken from the user. An optional field for axial force (in kN) is also given in the input dock if it is acting.\\
+	Assuming the beam is laterally supported and factored shear force does not exceed 0.6 times its design shear strength, 
+\end{comment}
+	The minimum moment capacity of connection,
 
 \section{Minimum Factored Moment} 
 \qquad \qquad[Reference: Cl. 10.7, b-1, IS 800 : 2007] \\ \\
@@ -266,8 +324,10 @@ The minimum moment capacity of connection,
 	Where, \\
 		\indent $\beta_b$ = 1.0 for plastic and compact sections;\\
 		\indent $\beta_b$ = $Z_e/Z_p$ for semi-compact sections;\\
+		
+		
 		\indent $Z_p, Z_e$ = Plastic and elastic section modulii of the cross-section, respectively; \\
-		\indent $f_y$ = Yield stress of the material; and;\\
+		\indent $f_y$ = Yield stress of the material;\\
 		\indent $\gamma_{m0}$ = Partial safety factor \\
 		\indent $M_{min}$ = Minimum moment capacity of the connection
 
@@ -278,7 +338,9 @@ The minimum moment capacity of connection,
 %					Bolt
 %------------------------------------------------------
 %
-The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming to IS 1363 (part 1) 2002], type of bolt action (bearing or friction grip) and grade of bolts are taken from the user as inputs. The nominal tensile strength of bolt [IS 1367 (part 3): 2002] is considered as the ultimate tensile strength by default, and the user is allowed to overwrite it in 'Design Preference'. The bolt hole type is taken as 'Standard' by default and the user is allowed to change it to 'Over-sized' in 'Design Preferences,' and the bolt hole diameter is calculated accordingly, conforming to cl. 10.2.1 of IS 800:2007. The coefficient of friction (for friction grip bolts) is taken as 0.3 by default and the user is allowed to change it from a dropdown list with values given in table 20 of IS 800:2007. 
+\begin{comment}	
+	The diameter [from a dropdown list with 12, 16, 20, 24, 30 or 36 mm conforming to IS 1363 (part 1) 2002], type of bolt action (bearing or friction grip) and grade of bolts are taken from the user as inputs. The nominal tensile strength of bolt [IS 1367 (part 3): 2002] is considered as the ultimate tensile strength by default, and the user is allowed to overwrite it in 'Design Preference'. The bolt hole type is taken as 'Standard' by default and the user is allowed to change it to 'Over-sized' in 'Design Preferences,' and the bolt hole diameter is calculated accordingly, conforming to cl. 10.2.1 of IS 800:2007. The coefficient of friction (for friction grip bolts) is taken as 0.3 by default and the user is allowed to change it from a dropdown list with values given in table 20 of IS 800:2007. 
+\end{comment}
 %======================================================
 \section{Bolt Value}
 %------------------------------------------------------
