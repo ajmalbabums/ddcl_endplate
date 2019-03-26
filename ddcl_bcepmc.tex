@@ -991,21 +991,48 @@ The resultant shear stress acting on web welds,
 The horizontal stiffener in compression region is provided to counteract
 the compressive force, 
 \begin{equation}
-	P_{bf} = \frac{M_u}{d_b - t_{fb}} - F_x
+	P_{bf} = \frac{M_u}{D_b - t_{fb}} - F_x
 \end{equation}
 where, \\
 \indent $P_{bf}$ = compressive force at beam flange \\ 
 \indent ${M_u}$ = applied bending moment \\ 
-\indent $d_b$ = depth of beam \\
+\indent $D_b$ = depth of beam \\
 \indent $t_{fb}$ = thickness of beam flange \\
 \indent $F_x$ = applied factored axial force \\
 
-The stiffener has to be checked for, 
-\begin{enumerate}[label=(\alph*)]
-	\item local web yielding
-	\item compression bucking of the web
-	\item web crippling
-\end{enumerate}
+
+Stiffeners are provided if,
+\begin{equation}
+	P_{bf} >  R_{wc}
+\end{equation}
+
+where, \\
+\begin{equation}
+	R_{wc} = max(R_{wcy}, R_{wcb}, R_{wcr})
+\end{equation}
+
+\newgls{R_{wc}}{Rwc}{Capacity of column web}
+\newgls{R_{wcy}}{Rwcy}{Capacity of column web against local yielding}
+\newgls{R_{wcb}}{Rwcb}{Capacity of column web against compression buckling}
+\newgls{R_{wcr}}{Rwcr}{Capacity of column web against crippling}
+
+Compression stiffeners are provided on either side of column web 
+for full depth of column and width of flange.
+The dimensions of column web stiffeners will be, \\
+\begin{equation}
+	length = l_{stC} = D_c-2~t_{fc}
+\end{equation}
+\begin{equation}
+	width = w_{stC} = \frac{w_{fc}-t_{wc}}{2}
+\end{equation}
+\begin{equation}
+	thickness = t_{stC} \ge max(\frac {l_{st}} {9.4 \epsilon_{st}} ,
+		\frac{P_{bf}-R_{wc}}{f_{yst}/\gamma_{m0}} )
+\end{equation}
+where, 
+\begin{equation}
+	\epsilon_{st} = \sqrt{\frac{250}{f_{yst}}}
+\end{equation}
 
 
 \subsection{Local web yielding}
@@ -1014,44 +1041,86 @@ Capacity of column web at the toe of flange-to-web fillet against local yielding
 (Assuming a load dispersion of 2.5 to 1 slop as per IS~800:2007, Cl. 8.7.4).
 
 \begin{equation}
-	R_{wc} = t_{wc}(5~t_{fc} + 5~r_{1c} + t_{fb}) \frac{f_{yw}}{\gamma_{m0}}
+	R_{wcy} = t_{wc}(5~t_{fc} + 5~r_{1c} + t_{fb}) \frac{f_{yw}}{\gamma_{m0}}
 \end{equation}
 
-Stiffeners are provided if,
-\begin{equation}
-	P_{bf} \geq  R_{wc}
-\end{equation}
-Stiffeners are provided on either side of the column web and for half depth of the column web.
-The dimensions of column web yielding stiffeners will be, \\
-\begin{equation}
-	length = \frac{d_c-2t_{fc}}{2}
-\end{equation}
-\begin{equation}
-	width = \frac{b_{fc}-t_{wc}}{2}
-\end{equation}
-\begin{equation}
-	thickness \ge \frac{P_{bf}-R_{wc}}{f_{yst}/\gamma_{m0}}
-\end{equation}
 
 \subsection{Compression buckling of web}
 \qquad \qquad[Reference: DoSS, N.Subramanian, pp505] \\ \\
 
-Stiffeners are provided if,
+Capacity of column web against compression buckling,
 \begin{equation}
-	P_{bf} \geq  10710~({t_{wc}}^3 /h) \sqrt{(f_{yw}/ \gamma_{m0})}
+	R_{wcb} = 10710~({t_{wc}}^3 /h) \sqrt{(f_{yw}/ \gamma_{m0})}
 \end{equation}
-
 
 
 \subsection{Web crippling}
 \qquad \qquad[Reference: DoSS, N.Subramanian, pp505] \\ \\
 
-
-
+Capacity of column web against crippling,
+\begin{equation}
+	R_{wcr} = (\frac{300~ {t_{wc}}^2}{\gamma_{m1}})
+	[1+3~\frac{t_{fb}}{D_c} ~ {\big{(}\frac{t_{wc}}{t_{fc}}\big{)}}^{1.5}]
+	\sqrt{\frac{f_{yw} t_{fc}}{t_{wc}}}
+\end{equation}
 
 \section{Horizontal stiffener in tension region}
+\qquad \qquad[Reference: DoSS, N.Subramanian, pp506] \\ \\
+
+The horizontal stiffener in compression region is provided to counteract
+the beam tension, 
+\begin{equation}
+	T_{bf} = \frac{M_u}{D_b - t_{fb}} + F_x
+\end{equation}
+
+Nominal strength of column flange, 
+\begin{equation}
+	P_n = \frac{{t_{fc}}^2}{0.16} \frac{f_{yf}}{\gamma_{m0}}	
+\end{equation}
+
+Stiffeners are provided if,
+\begin{equation}
+	T_{bf} >  P_n
+\end{equation}
+
+
+Tension stiffeners are provided on either side of column web 
+for full depth of column and width of flange.
+The dimensions of stiffeners will be, \\
+\begin{equation}
+	length = l_{stT} = D_c-2~t_{fc}
+\end{equation}
+\begin{equation}
+	width = w_{stT} = \frac{w_{fc}-t_{wc}}{2}
+\end{equation}
+\begin{equation}
+	thickness = t_{stT} \ge \frac{T_{bf}-P_n}{f_{yst}/\gamma_{m0}}
+\end{equation}
+
 
 \section{Diagonal Stiffener}
+\qquad \qquad[Reference: DoSS, N.Subramanian, pp 503,507] \\ \\
+
+Diagonal stiffeners are provided to resist the large shear produced by the applied moment at the portion of column web in connection. 
+
+
+Diagonal stiffeners are provided if,
+\begin{equation}
+	t_{wc} > \frac{1.9 M_u}{D_b D_c f_{ywc}}
+\end{equation}
+
+Area of stiffener required, 
+\begin{equation}
+	A_{stD} = 
+		\frac{\gamma_{m0}}{f_y \cos{\theta}} ~ [
+		\frac{M}{D_b} - 
+		\frac{f_y t_{wc} D_c}{\sqrt{3} ~ \gamma_{m0}} ]
+\end{equation}
+where,
+\begin{equation}
+	\cos{\theta} = \frac{D_c - 2 t_{fc}}
+	{\sqrt{{{(D_c - 2 t_{fc})}^2 + (D_b - 2 t_{fb})}^2}}
+\end{equation}
 
 \section{Weld size of stiffeners}
 %------------------------------------------------------
