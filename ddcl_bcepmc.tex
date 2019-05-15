@@ -981,32 +981,30 @@ The resultant shear stress acting on web welds,
 	f_{ww} = \frac{\sqrt{{F_{ww}}^2 + {F_{wx}}^2}}{0.7~z_w} \leq f_{wd}
 \end{equation}
 
-
-\chapter{Member Capacities and Stiffeners}
+\chapter{Local check of Member elements, Continuity Plates and Stiffeners}
 %------------------------------------------------------
-%					Member Capacities and Stiffeners
+%				Local check of Member elements, Continuity Plates and Stiffeners
 %------------------------------------------------------	 
-\section{Check for capacity of beam flange}
-\section{Horizontal stiffener in compression region}
-The horizontal stiffener in compression region is provided to counteract
-the compressive force, 
+
+\section{Horizontal Continuity Plate in compression region}
+The horizontal Continuity Plate in compression region is provided to counteract the beam flange compressive force, 
 \begin{equation}
 	P_{bf} = \frac{M_u}{D_b - t_{fb}} - F_x
 \end{equation}
-where, \\
+where,\\
 \indent $P_{bf}$ = compressive force at beam flange \\ 
 \indent ${M_u}$ = applied bending moment \\ 
 \indent $D_b$ = depth of beam \\
 \indent $t_{fb}$ = thickness of beam flange \\
-\indent $F_x$ = applied factored axial force \\
+\indent $F_x$ = applied factored axial tensile force in the beam flange\\
 
-
-Stiffeners are provided if,
+\noindent
+Continuity Plates are provided if,
 \begin{equation}
 	P_{bf} >  R_{wc}
 \end{equation}
-
-where, \\
+\noindent
+where,
 \begin{equation}
 	R_{wc} = max(R_{wcy}, R_{wcb}, R_{wcr})
 \end{equation}
@@ -1015,9 +1013,8 @@ where, \\
 \newgls{R_{wcy}}{Rwcy}{Capacity of column web against local yielding}
 \newgls{R_{wcb}}{Rwcb}{Capacity of column web against compression buckling}
 \newgls{R_{wcr}}{Rwcr}{Capacity of column web against crippling}
-
-Compression stiffeners are provided on either side of column web 
-for full depth of column and width of flange.
+\\
+Continuity Plates are provided on either side of column web for full depth of column and width of flange.
 The dimensions of column web stiffeners will be, \\
 \begin{equation}
 	length = l_{stC} = D_c-2~t_{fc}
@@ -1027,7 +1024,7 @@ The dimensions of column web stiffeners will be, \\
 \end{equation}
 \begin{equation}
 	thickness = t_{stC} \ge max(\frac {l_{st}} {9.4 \epsilon_{st}} ,
-		\frac{P_{bf}-R_{wc}}{f_{yst}/\gamma_{m0}} )
+	\frac{P_{bf}-R_{wc}}{f_{yst}/\gamma_{m0}} )
 \end{equation}
 where, 
 \begin{equation}
@@ -1038,7 +1035,7 @@ where,
 \subsection{Local web yielding}
 \qquad \qquad[Reference: DoSS, N.Subramanian, pp504] \\ \\
 Capacity of column web at the toe of flange-to-web fillet against local yielding,
-(Assuming a load dispersion of 2.5 to 1 slop as per IS~800:2007, Cl. 8.7.4).
+(Assuming a load dispersion of 2.5 to 1 slope as per IS~800:2007, Cl. 8.7.4).
 
 \begin{equation}
 	R_{wcy} = t_{wc}(5~t_{fc} + 5~r_{1c} + t_{fb}) \frac{f_{yw}}{\gamma_{m0}}
@@ -1047,7 +1044,7 @@ Capacity of column web at the toe of flange-to-web fillet against local yielding
 
 \subsection{Compression buckling of web}
 \qquad \qquad[Reference: DoSS, N.Subramanian, pp505] \\ \\
-
+\noindent
 Capacity of column web against compression buckling,
 \begin{equation}
 	R_{wcb} = 10710~({t_{wc}}^3 /h) \sqrt{(f_{yw}/ \gamma_{m0})}
@@ -1056,7 +1053,7 @@ Capacity of column web against compression buckling,
 
 \subsection{Web crippling}
 \qquad \qquad[Reference: DoSS, N.Subramanian, pp505] \\ \\
-
+\noindent
 Capacity of column web against crippling,
 \begin{equation}
 	R_{wcr} = (\frac{300~ {t_{wc}}^2}{\gamma_{m1}})
@@ -1064,29 +1061,31 @@ Capacity of column web against crippling,
 	\sqrt{\frac{f_{yw} t_{fc}}{t_{wc}}}
 \end{equation}
 
-\section{Horizontal stiffener in tension region}
-\qquad \qquad[Reference: DoSS, N.Subramanian, pp506] \\ \\
 
-The horizontal stiffener in compression region is provided to counteract
-the beam tension, 
+
+\section{Continuity Plates in tension region}
+\qquad \qquad[Reference: DoSS, N.Subramanian, pp506] \\ \\
+\noindent
+The continuity plates in tension region is provided to counteract the beam flange tension, 
 \begin{equation}
 	T_{bf} = \frac{M_u}{D_b - t_{fb}} + F_x
 \end{equation}
 
+\noindent
 Nominal strength of column flange, 
 \begin{equation}
 	P_n = \frac{{t_{fc}}^2}{0.16} \frac{f_{yf}}{\gamma_{m0}}	
 \end{equation}
 
-Stiffeners are provided if,
+\noindent
+Continuity plates are provided if,
 \begin{equation}
 	T_{bf} >  P_n
 \end{equation}
 
-
-Tension stiffeners are provided on either side of column web 
-for full depth of column and width of flange.
-The dimensions of stiffeners will be, \\
+\noindent
+Tension continuity plates are provided on either side of column web for full depth of column and width of flange.
+The dimensions of Continuity plates will be, \\
 \begin{equation}
 	length = l_{stT} = D_c-2~t_{fc}
 \end{equation}
@@ -1098,23 +1097,24 @@ The dimensions of stiffeners will be, \\
 \end{equation}
 
 
+
 \section{Diagonal Stiffener}
 \qquad \qquad[Reference: DoSS, N.Subramanian, pp 503,507] \\ \\
-
+\noindent
 Diagonal stiffeners are provided to resist the large shear produced by the applied moment at the portion of column web in connection. 
 
-
+\noindent
 Diagonal stiffeners are provided if,
 \begin{equation}
 	t_{wc} > \frac{1.9 M_u}{D_b D_c f_{ywc}}
 \end{equation}
-
+\noindent
 Area of stiffener required, 
 \begin{equation}
 	A_{stD} = 
-		\frac{\gamma_{m0}}{f_y \cos{\theta}} ~ [
-		\frac{M}{D_b} - 
-		\frac{f_y t_{wc} D_c}{\sqrt{3} ~ \gamma_{m0}} ]
+	\frac{\gamma_{m0}}{f_y \cos{\theta}} ~ [
+	\frac{M}{D_b} - 
+	\frac{f_y t_{wc} D_c}{\sqrt{3} ~ \gamma_{m0}} ]
 \end{equation}
 where,
 \begin{equation}
@@ -1122,8 +1122,129 @@ where,
 	{\sqrt{{{(D_c - 2 t_{fc})}^2 + (D_b - 2 t_{fb})}^2}}
 \end{equation}
 
-\section{Weld size of stiffeners}
+
+\section{Local check of beam flange against yielding}
+The developed force in the beam flange = force transferred to the horizontal stiffeners = $P_{bf}$ or $T_{bf}$.\\
+\\
+\\
+\indent $b_{bf}$ = width of beam flange \\ 
+\indent $t_{bf}$ = thickness of beam flange \\
+\newgls{P_{loc,bf}}{P_{loc}}{Local capacity of beam flange}\\
+\\
+Local capacity of beam flange,
+\begin{equation}
+	P_{loc,bf} = \frac{b_{bf} t_{bf} f_y}{\gamma_{m0}}
+\end{equation}
+\\
+Check,\\
+\begin{equation}
+	P_{loc,bf} \geq P_{bf}\:or\:T_{bf}
+\end{equation}
+
+
+%\pagebreak
+\section{Weld size of column web continuity plates}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.5]{COLCP.png}
+\end{figure}
+
+\noindent
+Force induced in each piece of the column continuity plate = $P_{bf}/2$ \: or \: $T_{bf}/2$.\\
+\\
+Moment induced in the column continuity plate = $ \frac{P_{bf}} {2}  \frac{g'} {2} $ \: or \: $ \frac{T_{bf}} {2}  \frac{g'} {2} $\\
+\\
+\indent $g'$ = gauge of the end plate bolts \\ 
+\\
+\noindent
+To transfer the force from the column flange to the continuity plates, it is preferable that the continuity plates are butt welded to the column flanges.
+\\
+The fillet weld between the continuity plates and the column web need to be checked for the force transferred through the continuity plates i.e. $P_{bf}/2$ \: or \: $T_{bf}/2$.\\
+\\
+Effective length of the continuity plate, $l_{eff} = ( D_c - 2t_{cf} - 2n )$ \\
+Total length of weld available, $l_w = 2(\, l_{eff} - 2.w)$ \\
+\\
+\indent $D_c$ = depth of column \\ 
+\indent $t_{cf}$ = thickness of column flange \\
+\indent $n$ = notch size \\
+\indent $w$ = weld size \\
+\\
+Capacity of fillet weld,
+\begin{equation}
+	P_w = \frac{l_w . f_u . w_{tt}}{\sqrt{3} \gamma_{mw}}\\
+\end{equation}
+\\
+\indent $w_{tt}$ = throat thickness of fillet weld \\
+\\
+The moment in the continuity plate, due to eccentricity of force can be taken care of by the weld between the continuity plate and the column flange. Since this is a butt weld, we need to check shear capacity of the continuity plate in this direction only.
+\\
+Shear force in this direction = $ \frac{P_{bf} \: e}{2 d_{st}} $ \: or \: $ \frac{T_{bf} \: e} {2 d_{st}} $\\
+\\
+Shear capacity of the continuity plate plate, $V_{st} = \frac{b_{st,eff} t_{st} . f_y}{\sqrt{3} \gamma_{m0}}$\\
+\\
+\indent $d_{st}$ = depth of continuity plate = $D_c - 2t_{cf}$ \\
+\indent $b_{st,eff}$ = width of continuity plate = $(b_{cf} - t_w)/2 - n$ \\
+\indent $t_{st}$ = thickness of continuity plate \\
+
+
+\section{End Plate Stiffeners}
+Considering that moment developed at the beam column junction is clockwise in nature, the top stiffener will be under shear and bending moment as shown in the following figure.\\
+
+%\includegraphics[scale=0.5]{EPStiffeners.png}
+\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.5]{EPStiffeners.png}
+	%\caption{}
+	%\label{fig:EPstiffener}
+\end{figure}
+
+
+
+\noindent
+Total force transferred to the stiffener, $P_{st}$ = 2x ($T_{b1} + T_{b2}$)\\
+%considering that full force in the bolts will be transferred to the stiffener rather than the beam flange.
+C.G. of the bolts, $e$ = ($P_1 + P_2/2$)\\
+Induced moment in the stiffener, $M_{st} = P_{st}.e$\\
+\\
+\indent $T_{bi}$ = bolt force in the $i^{th}$ row \\
+\indent $P_i$ = pitch of the $i^{th}$ row of bolt\\
+\\
+\subsection{Check of the stiffener plate}
+Effective length of the stiffener, $l_{st,eff} = l_{st} - n$\\
+\\
+Shear capacity of the stiffener plate, $V_{st} = \frac{l_{st,eff} t_{st} . f_y}{\sqrt{3} \gamma_{m0}}$\\
+\\
+Moment capacity of the stiffener plate $M_{st} = \frac{l_{st,eff}^2 t_{st} . f_y}{4 \gamma_{m0}}$\\
+\\
+
+\subsection{Check for stiffener weld}
+Effective length of the weld available, $l_w = (l_{eff} - 2.w)$\\
+\\
+Shear capacity of the weld, $V_w = \frac{2. l_w w_{tt} . f_u}{\sqrt{3} \gamma_{mw}}$\\
+\\
+
+\subsubsection{Combined check of weld for bending and shear stress}
+Developed shear stress, $q = \frac{P_{st}}{2.l_w.s_{tt}}$\\
+\\
+Developed normal stress due to induced bending moment, $f_a = \frac{ M_{st}}{2.(w_{tt}.l_w^2/4)}$\\
+\\
+So, equivalent stress, 
+%Referece can also be drawn to Cl 4.5.3 of EN 1993-1-8 : 2005
+%Two methods have been suggested, Directional Method and Simplified Method
+%In IS 800, these two have been combined and hence the check is on too much conservative side.
+\begin{equation}
+	f_e = \sqrt{f_a^2 + q^2}
+\end{equation}
+\\
+As per cl 10.5.10.1.1 of IS 800:2007, check, 
+\begin{equation}
+	f_e \leq \frac{f_u}{\sqrt{3} \gamma_{mw}}
+\end{equation}
+
+
 %------------------------------------------------------
 %------------------------------------------------------
 \end{Form}
 \end{document}
+
