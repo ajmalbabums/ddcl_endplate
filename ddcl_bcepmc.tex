@@ -131,7 +131,7 @@
 \begin{document}
 	\title{Osdag\\ Open steel design and graphics}
 	\author{Ajmal Babu M S}
-	\date{07 August 2018}
+	\date{\today}
 \pagestyle{fancy}
 \lhead{}
 \chead{}
@@ -166,7 +166,7 @@
  			\vspace{0.5cm}
 			{\univ} \\ 
 			\vspace{0.15cm}		
-			{August 2018}
+			{\today}
 	\end{center}
 \end{titlepage}
 %------------------------------------------------------
@@ -176,8 +176,12 @@
 \printglossary[type=symbolslist,style=long]
 
 \begin{Form}
+
+	
+\pagenumbering{arabic}	
+\begin{comment}
 %------------------------------------------------------
-\pagenumbering{arabic}
+
 \chapter*{Guideline for filling DDCL}
 	\begin{itemize}
 			\item    Guideline1
@@ -185,7 +189,7 @@
 	\end{itemize}
 %------------------------------------------------------
 \chapter*{Reviewer Details}
-
+\end{comment}
 %------------------------------------------------------
 \chapter*{User Inputs}
 %
@@ -245,6 +249,7 @@ in the message log.
 %------------------------------------------------------
 \section{Beam Section}
 %
+Currently, 
 For column flange to beam web connectivity, 
 \begin{equation}
 	w_{fb} \le w_{fc}
@@ -260,11 +265,11 @@ Where, \\
 \newgls{w_{fc}}{wfc}{Width of column flange}
 \newgls{D_c}{Dc}{Depth of column} 
 \newgls{t_{fc}} {tfc} {Thickness of column flange} 
-\newgls{r_{1c}} {r1c} {Root radius of column} \\
+\newgls{r_{1c}} {r1c} {Root radius of column} or fillet size in welded sections\\
 \indent $gap$ = Clearance between beam and column flanges, 5mm
 
 
-\okornot
+%\okornot
 \chapter{Material Strength}
 %------------------------------------------------------
 %					Material strength
@@ -297,7 +302,7 @@ The values of material strength will be subjected to the following limits in \te
 	f_{y} \leq 344
 \end{equation}
 
-	\okornot
+%	\okornot
 
 \chapter{Factored loads}
 %------------------------------------------------------
@@ -331,7 +336,7 @@ The values of material strength will be subjected to the following limits in \te
 		\indent $\gamma_{m0}$ = Partial safety factor \\
 		\indent $M_{min}$ = Minimum moment capacity of the connection
 
-\okornot
+%\okornot
 
 \chapter{Bolt}
 %------------------------------------------------------
@@ -372,7 +377,7 @@ Where, \\
 \indent $\beta_{lj}, \beta_{lg}$ = factors, given by;
 
 \begin{equation}
-	\beta_{lj} = 1.075 - 0.005(l_j/d)
+	\beta_{lj} = 1.075 - 0.005(l_j/d), 0.75 \le \beta_{lj} \le 1.0
 \end{equation}
 
 \begin{equation}
@@ -535,7 +540,7 @@ Moment acting on the connection due to applied moment,
 \end{equation}
 
 \begin{equation}
-	T_{im} = \frac {M l_i} {\sum {y_i}^2}
+	T_{im} = \frac {M l_i} {\sum {l_i}^2}
 \end{equation}
 \subsection{Prying force in bolts}
 \quad \quad[Reference: Cl. 10.4.7, IS 800:2007] \\
@@ -558,10 +563,6 @@ Where, \\
 \indent $b_e$ = effective width of flange per pair of bolts; \\
 \indent $f_o$ = proof stress, and; \\
 \indent $t$ = thickness of the end plate. \\
-
-
-
-
 
 
 \subsection{Check for total tension in bolts}
@@ -607,7 +608,7 @@ Where, \\
 \indent $T_b$ = factored tensile force acting on the bolt, and; \\
 \indent $T_{db}$ = design tension capacity of bolt; \\
 
-\okornot
+%\okornot
 
 
 	
@@ -678,7 +679,7 @@ Where $d_0$ is the diameter of bolt hole
 
 				
 \section{Cross-centre gauge distance (g')} 
-Cross centre gauge is the distance between 
+Cross centre gauge is the distance between immediate columns of bolts on either side of beam web.
 
 		\subsection{Flush end plate}
 		\qquad \qquad [Reference: AISC Design Guide - 16, table 3-6, page 22]
@@ -707,7 +708,7 @@ Cross centre gauge is the distance between
 			\end{equation}
 
 \section{Projection of plate beyond the flanges ($c$)}
-\label{cover}
+\label{projection}
 This specifies the projection of end plate beyond the bottom and top flanges of beam in flush end plate connection and bottom flange of beam in one way extended end plate connection.
 
 
@@ -720,17 +721,17 @@ This specifies the projection of end plate beyond the bottom and top flanges of 
 	\qquad \qquad [Reference: based on detailing] \\ \\
 	\subsubsection{for flush end plate}
 		\begin{equation}
-			h_p \ge D + 2 * (t_{wf} + cover)
+			h_p \ge D + 2 * (t_{wf} + projection)
 		\end{equation}
 	
 	\subsubsection{for extended one way end plate}
 	\begin{equation}
-	h_p \ge D + (2 * t_{wf}) + p_f + e + cover
+	h_p \ge D + (2 * t_{wf}) + p_f + e + projection
 	\end{equation}
 	
 	\subsubsection{for extended both ways end plate}
 	\begin{equation}
-	h_p \ge D + 2 * (t_{wf} + n'*p + p_f + e + cover)
+	h_p \ge D + 2 * (t_{wf} + n'*p + p_f + e + projection)
 	\end{equation}
 				
 		Where, \\
@@ -738,7 +739,7 @@ This specifies the projection of end plate beyond the bottom and top flanges of 
 	\indent $t_{wf}$ = size of weld at flange; \\
 	\indent $p_f$ =  distance between centre of the bolt and toe of weld at flange;\\
 	\indent $e$ = end distance; \\
-	\indent $cover$ = as per \ref{cover}\\
+	\indent $projection$ = as per \ref{projection}\\
 	\indent $n'$ = number of rows of bolts beyond the flange
 
 \section{Plate Width (\boldmath $w_p$)}
