@@ -1034,8 +1034,8 @@ length = l_{stC} = D_c-2~t_{fc}
 width = w_{stC} = \frac{w_{fc}-t_{wc}}{2}
 \end{equation}
 \begin{equation}
-thickness = t_{stC} \ge max(\frac {w_{stC}} {9.4 \epsilon_{st}} ,
-\frac{P_{bf}-R_{wc}}{w_{stC} ~ f_{yst}/\gamma_{m0}} )
+thickness = t_{stC} \ge max(\frac {l_{st}} {9.4 \epsilon_{st}} ,
+\frac{P_{bf}-R_{wc}}{f_{yst}/\gamma_{m0}} )
 \end{equation}
 where, 
 \begin{equation}
@@ -1104,7 +1104,7 @@ length = l_{stT} = D_c-2~t_{fc}
 width = w_{stT} = \frac{w_{fc}-t_{wc}}{2}
 \end{equation}
 \begin{equation}
-thickness = t_{stT} \ge \frac{T_{bf}-P_n}{w_{stT} ~ f_{yst}/\gamma_{m0}}
+thickness = t_{stT} \ge \frac{T_{bf}-P_n}{f_{yst}/\gamma_{m0}}
 \end{equation}
 
 
@@ -1159,7 +1159,7 @@ P_{loc,bf} \geq P_{bf}\:or\:T_{bf}
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.5]{COLCP.png}
+	\includegraphics[scale=0.5]{COLCP2.png}
 \end{figure}
 
 \noindent
@@ -1170,10 +1170,13 @@ Moment induced in the column continuity plate, $M_{st}$ = $ \frac{P_{bf}} {2}  \
 \indent $g'$ = gauge of the end plate bolts \\ 
 \\
 \noindent
-To transfer the force from the column flange to the continuity plates, it is preferable that the continuity plates are butt welded to the column flanges.
-\\
+To transfer the force from the column flange to the continuity plates, it is preferable that the continuity plates are butt welded to the column flanges.\\
+In the following section, checks are done considering fillet weld.\\
+
+
 The fillet weld between the continuity plates and the column web need to be checked for the force transferred through the continuity plates i.e. $P_{bf}/2$ \: or \: $T_{bf}/2$.\\
 \\
+Length of the continuity plate, $l_{con} = ( D_c - 2t_{cf} )$ \\
 Effective length of the continuity plate, $l_{eff} = ( D_c - 2t_{cf} - 2n )$ \\
 Total length of weld available, $l_w = 2(\, l_{eff} - 2.w)$ \\
 \\
@@ -1195,24 +1198,61 @@ check,
 P_w \ge P_{st}
 \end{equation}
 \\
-The moment in the continuity plate, due to eccentricity of force can be taken care of by the weld between the continuity plate and the column flange. Since this is a butt weld, we need to check shear capacity of the continuity plate in this direction only.
+The moment in the continuity plate, due to eccentricity of force can be taken care of by the weld between the continuity plate and the column flange. \\
+If this is a butt weld, we need to check shear capacity of the continuity plate in this direction only.\\
+We are calculating considering fillet weld here-\\
 \\
-Shear force in this direction, $V_{st}$ = $ \frac{M_{st}}{d_{st}} $ 
+Direct axial force through the weld = $P_{st}$\\
 \\
-Shear capacity of the continuity plate plate, 
+Shear force through the weld, $V_{st}$ = $ \frac{M_{st}}{l_{con}} $ 
+\\
+%Shear capacity of the continuity plate plate, 
+%\begin{equation}
+%    V_{st,cap} = \frac{b_{st,eff} t_{st} . f_y}{\sqrt{3} \gamma_{m0}}
+%\end{equation}
+%\indent [Reference: Cl. 8.4.1 of IS 800: 2007] \\ \\
+%\\
+%check,
+%\begin{equation}
+%    V_{st,cap} \ge V_{st}
+%\end{equation}
+%\\
+%
+Shear stress developed in the weld, 
+\begin{equation*}
+\tau_w = \frac{V_{st}}{2.d_{w,eff}w_{tt}}
+\end{equation*}
+\noindent
+Check,
 \begin{equation}
-V_{st,cap} = \frac{b_{st,eff} t_{st} . f_y}{\sqrt{3} \gamma_{m0}}
+\tau_w \leq \frac{f_u}{\sqrt{3} \gamma_{mw}}
 \end{equation}
-\indent [Reference: Cl. 8.4.1 of IS 800: 2007] \\ \\
-\\
-check,
+
+\noindent
+Normal stress developed in the weld, 
+\begin{equation*}
+\sigma_w = \frac{P_{st}}{2.d_{w,eff}w_{tt}}
+\end{equation*}
+\noindent
+Check,
 \begin{equation}
-V_{st,cap} \ge V_{st}
+\sigma_w \leq \frac{f_u}{\sqrt{3} \gamma_{mw}}
 \end{equation}
-\\
-\indent $d_{st}$ = depth of continuity plate = $D_c - 2t_{cf}$ \\
-\indent $b_{st,eff}$ = width of continuity plate = $(b_{cf} - t_w)/2 - n$ \\
-\indent $t_{st}$ = thickness of continuity plate \\
+\noindent
+Combined check, equivalent stress,
+\begin{equation*}
+f_e = \sqrt{\sigma_w^2 + \tau_w^2}
+\end{equation*}
+\noindent
+Check,
+\begin{equation}
+f_e \leq \frac{f_u}{\sqrt{3} \gamma_{mw}}
+\end{equation}
+
+
+\indent $d_{st}$ = width of plate = $(b_f-t_w)/2$
+\indent $d_{st,eff}$ = effective width of plate = $d_{st} - n$ \\
+\indent $d_{w,eff}$ = effective length of weld in this direction = $d_{st,eff} - 2w$ \\
 
 \pagebreak
 \section{End Plate Stiffeners}
@@ -1221,7 +1261,7 @@ Considering that moment developed at the beam column junction is clockwise in na
 %\includegraphics[scale=0.5]{EPStiffeners.png}
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.5]{EPStiffeners.png}
+	\includegraphics[scale=0.5]{Stiffeners.png}
 	%\caption{}
 	%\label{fig:EPstiffener}
 \end{figure}
@@ -1287,6 +1327,26 @@ f_e \leq \frac{f_u}{\sqrt{3} \gamma_{mw}}
 \end{equation}
 
 
+%------------------------------------------------------
+
+\chapter{Future works: Detailing of connections}
+Detailing of weld- single bevel, double bevel as per thickness of the plates being welded.\\
+figures:\\
+%\includegraphics[scale=0.5]{EPStiffeners.png}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.575]{weld_details2.png}
+	%\caption{}
+	%\label{fig:EPstiffener}
+\end{figure}
+
+\subsection{Choice of Bevel Weld:}
+"Type 1" is to be adopted for plate thickness less than 12 mm, and "Type 2" for thickness greater than 12 mm.\\
+Reference may be drawn to IS 9595 : 1996 for further types of butt welding.
+
+%------------------------------------------------------
+%				Detailing of connections
+%------------------------------------------------------
 %------------------------------------------------------
 %------------------------------------------------------
 \end{Form}
